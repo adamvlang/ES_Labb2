@@ -1,0 +1,10 @@
+I-Logix-RPY-Archive version 8.10.0 * 6930133
+
+- filesTable = { IRPYRawContainer 
+	- size = 3;
+	- value = "Dishwasher.rpy" ""
+	"Dishwasher_rpy\\Default.sbs" "Default"
+	"Dishwasher_rpy\\Test.cmp" "Test"
+	
+}
+
