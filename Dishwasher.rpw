@@ -5,13 +5,13 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	}
 	- isLoadOnDemand = 0;
 	- myViewsWithID = { IRPYRawContainer 
-		- size = 4;
+		- size = 2;
 		- value = 
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
-				- m_nFlags = 0;
-				- m_showCmd = 1;
+				- m_nFlags = 2;
+				- m_showCmd = 3;
 				- m_ptMinPositionX = -1;
 				- m_ptMinPositionY = -1;
 				- m_ptMaxPositionX = -8;
@@ -30,44 +30,16 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 				- _name = "StatechartDiagram";
 				- _id = GUID 9d0f922e-4984-4eeb-b8aa-3ac9f6f2f4ce;
 			}
-			- _UpLeft = 20 48 ;
-			- _DownRight = 1173 449 ;
+			- _UpLeft = 0 38 ;
+			- _DownRight = 1394 722 ;
 			- _instanceName = "";
-			- m_nDiagramIndex = 2;
+			- m_nDiagramIndex = 1;
 		}
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
 				- m_nFlags = 0;
 				- m_showCmd = 1;
-				- m_ptMinPositionX = -1;
-				- m_ptMinPositionY = -1;
-				- m_ptMaxPositionX = -8;
-				- m_ptMaxPositionY = -30;
-				- m_nLeft = 150;
-				- m_nTop = 150;
-				- m_nRight = 1340;
-				- m_nBottom = 610;
-			}
-			- _wasOpenedOnCloseProject = 1;
-			- _theDiagram = { IHandle 
-				- _m2Class = "IStateChartDiagram";
-				- _filename = "Default.sbs";
-				- _subsystem = "Default";
-				- _class = "Dishwasher";
-				- _name = "StatechartDiagram";
-				- _id = GUID 9d0f922e-4984-4eeb-b8aa-3ac9f6f2f4ce;
-			}
-			- _UpLeft = 0 404 ;
-			- _DownRight = 1230 832 ;
-			- _instanceName = "Dishwasher[0]";
-			- m_nDiagramIndex = 1;
-		}
-		{ CGEMdiDiagramParams 
-			- _placement = { CCommon_WINDOWPLACEMENT 
-				- m_nLength = 44;
-				- m_nFlags = 2;
-				- m_showCmd = 3;
 				- m_ptMinPositionX = -1;
 				- m_ptMinPositionY = -1;
 				- m_ptMaxPositionX = -8;
@@ -87,37 +59,9 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 				- _id = GUID 0b6c3adc-0623-4be5-bf49-826dc028a68d;
 			}
 			- _UpLeft = 0 0 ;
-			- _DownRight = 1394 684 ;
+			- _DownRight = 1147 415 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 0;
-		}
-		{ CGEMdiDiagramParams 
-			- _placement = { CCommon_WINDOWPLACEMENT 
-				- m_nLength = 44;
-				- m_nFlags = 0;
-				- m_showCmd = 1;
-				- m_ptMinPositionX = -1;
-				- m_ptMinPositionY = -1;
-				- m_ptMaxPositionX = -8;
-				- m_ptMaxPositionY = -30;
-				- m_nLeft = 25;
-				- m_nTop = 25;
-				- m_nRight = 1215;
-				- m_nBottom = 485;
-			}
-			- _wasOpenedOnCloseProject = 1;
-			- _theDiagram = { IHandle 
-				- _m2Class = "IDiagram";
-				- _filename = "";
-				- _subsystem = "";
-				- _class = "";
-				- _name = "Model1";
-				- _id = GUID 5fd0f4f6-be81-48b0-9167-6c5f40ab61e5;
-			}
-			- _UpLeft = 0 0 ;
-			- _DownRight = 1153 401 ;
-			- _instanceName = "";
-			- m_nDiagramIndex = 3;
 		}
 	}
 	- _fullName = "C:\\Users\\adamlang\\Documents\\GitHub\\ES_Labb2\\Dishwasher";

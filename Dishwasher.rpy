@@ -29,7 +29,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 		}
 	}
 	- _name = "Dishwasher";
-	- _modifiedTimeWeak = 11.26.2015::8:43:38;
+	- _modifiedTimeWeak = 11.26.2015::9:9:18;
 	- _lastID = 1;
 	- _UserColors = { IRPYRawContainer 
 		- size = 16;
@@ -495,7 +495,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 			}
 			- _name = "Dishwasher panel";
 			- _modifiedTimeWeak = 1.2.1990::0:0:0;
-			- _lastModifiedTime = "11.26.2015::8:44:4";
+			- _lastModifiedTime = "11.26.2015::9:9:45";
 			- _graphicChart = { CGIClassChart 
 				- _id = GUID 65e632c4-3039-4d7a-a402-0a9d35078742;
 				- m_type = 0;
@@ -519,7 +519,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 				}
 				- m_drawBehavior = 0;
 				- m_bIsPreferencesInitialized = 0;
-				- elementList = 20;
+				- elementList = 21;
 				{ CGIBox 
 					- _id = GUID 4ba64903-e514-4056-8037-13f7f302ede4;
 					- m_type = 215;
@@ -1946,6 +1946,80 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 					- m_bIsPreferencesInitialized = 1;
 					- m_points = 4 1092 60  1130 60  1130 78  1092 78  ;
 					- m_text = "RATIONAL RHAPSODY DISHWASHER";
+				}
+				{ CGIActiveX 
+					- _id = GUID e60fe67e-41c7-4e9b-a996-b416702a4c4f;
+					- _properties = { IPropertyContainer 
+						- Subjects = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertySubject 
+								- _Name = "Format";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "Led";
+										- Properties = { IRPYRawContainer 
+											- size = 1;
+											- value = 
+											{ IProperty 
+												- _Name = "ActiveXProperties@Child.ActiveXControl";
+												- _Value = "BackColor;16777215;BlackWhenOff;0;Blinking;0;BlinkingTimeMillisec;300;Color;2;State;0;Style;3;";
+												- _Type = String;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					- m_type = 219;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "IState";
+						- _filename = "Default.sbs";
+						- _subsystem = "Default";
+						- _class = "Dishwasher";
+						- _name = "ROOT.Active.mode.energySaver";
+						- _id = GUID 85507c91-0dfb-4dbd-9db5-c75466bce520;
+					}
+					- m_pParent = GUID 4ba64903-e514-4056-8037-13f7f302ede4;
+					- m_name = { CGIText 
+						- m_str = "energySaver";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 1;
+					}
+					- m_drawBehavior = 4096;
+					- m_transform = 0.000126238 0 0 0.000113298 880 630.126 ;
+					- m_bIsPreferencesInitialized = 1;
+					- m_polygon = 4 0 -1114  0 113628  102980 113628  102980 -1114  ;
+					- m_nNameFormat = 0;
+					- m_nIsNameFormat = 0;
+					- Compartments = { IRPYRawContainer 
+						- size = 0;
+					}
+					- m_csModelObjPath = "Default.Dishwasher[0].statechart_9.energySaver";
+					- m_csName = "energySaver";
+					- m_PartsArray = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IClass";
+							- _filename = "Default.sbs";
+							- _subsystem = "Default";
+							- _class = "";
+							- _name = "Dishwasher";
+							- _id = GUID 2823177a-2872-4cd0-aacf-ea6d38b24975;
+						}
+					}
 				}
 				
 				- m_access = 'Z';

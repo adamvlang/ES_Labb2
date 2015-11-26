@@ -2,10 +2,10 @@
 	Rhapsody in C	: 8.1.1 
 	Login		: adamlang
 	Component	: Test 
-	Configuration 	: Debug
+	Configuration 	: Sim
 	Model Element	: Dishwasher
 //!	Generated Date	: Thu, 26, Nov 2015  
-	File Path	: Test\Debug\Dishwasher.h
+	File Path	: Test\Sim\Dishwasher.h
 *********************************************************************/
 
 #ifndef Dishwasher_H
@@ -142,5 +142,5 @@ enum Dishwasher_Enum {
 
 #endif
 /*********************************************************************
-	File Path	: Test\Debug\Dishwasher.h
+	File Path	: Test\Sim\Dishwasher.h
 *********************************************************************/

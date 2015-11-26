@@ -2,10 +2,10 @@
 	Rhapsody in C	: 8.1.1 
 	Login		: adamlang
 	Component	: Test 
-	Configuration 	: Debug
+	Configuration 	: Sim
 	Model Element	: Dishwasher
 //!	Generated Date	: Thu, 26, Nov 2015  
-	File Path	: Test\Debug\Dishwasher.c
+	File Path	: Test\Sim\Dishwasher.c
 *********************************************************************/
 
 #include "Dishwasher.h"
@@ -1008,11 +1008,6 @@ static void on_entDef(Dishwasher* const me) {
     NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on");
     me->running_subState = Dishwasher_on;
     NOTIFY_TRANSITION_STARTED(me, Dishwasher, "19");
-    {
-        /*#[ transition 19 */
-        setup(me);
-        /*#]*/
-    }
     NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on.washing");
     RiCReactive_pushNullConfig(&(me->ric_reactive));
     me->on_subState = Dishwasher_washing;
@@ -1150,5 +1145,5 @@ static void FreeInstance(Dishwasher* const me) {
 }
 
 /*********************************************************************
-	File Path	: Test\Debug\Dishwasher.c
+	File Path	: Test\Sim\Dishwasher.c
 *********************************************************************/

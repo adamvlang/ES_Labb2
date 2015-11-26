@@ -26,7 +26,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 	}
 	- m_configActive = { ICodeGenConfigInfoHandle 
 		- _m2Class = "ICodeGenConfigInfo";
-		- _id = GUID 6a5ee646-b74b-4846-8315-a58f0cbdeff1;
+		- _id = GUID bc47d625-a3c5-4a89-8b66-59ed7337977b;
 	}
 	- Configs = { IRPYRawContainer 
 		- size = 2;
@@ -114,7 +114,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 			- _id = GUID 6a5ee646-b74b-4846-8315-a58f0cbdeff1;
 			- _myState = 8192;
 			- _name = "Sim";
-			- _modifiedTimeWeak = 11.26.2015::8:27:40;
+			- _modifiedTimeWeak = 11.26.2015::9:18:3;
 			- HyperLinks = { IRPYRawContainer 
 				- size = 2;
 				- value = 
@@ -148,7 +148,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 			- _includePath = "";
 			- _targetMain = "";
 			- _instrumentation = Animation;
-			- _timeModel = Simulated;
+			- _timeModel = RealTime;
 			- m_generateActors = 1;
 			- _statechartImplementation = Flat;
 			- _initializationCode = "";
@@ -157,7 +157,16 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 				- size = 0;
 			}
 			- InitialInstances = { IRPYRawContainer 
-				- size = 0;
+				- size = 1;
+				- value = 
+				{ IHandle 
+					- _m2Class = "IClass";
+					- _filename = "Default.sbs";
+					- _subsystem = "Default";
+					- _class = "";
+					- _name = "Dishwasher";
+					- _id = GUID 2823177a-2872-4cd0-aacf-ea6d38b24975;
+				}
 			}
 			- _root = { IFolder 
 				- _id = GUID 282ff03d-55fe-4135-af20-8145946fb754;
@@ -172,8 +181,8 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 					- size = 0;
 				}
 			}
-			- weakCGTime = 11.26.2015::8:27:40;
-			- strongCGTime = 11.26.2015::8:27:40;
+			- weakCGTime = 11.26.2015::9:18:3;
+			- strongCGTime = 11.26.2015::9:18:3;
 			- AnimScopeElements = { IRPYRawContainer 
 				- size = 0;
 			}
