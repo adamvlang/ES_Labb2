@@ -1,4 +1,8 @@
 [Op Calls]
 [Events]
 Dishwasher[0]->GEN(evStart())`Dishwasher
+Dishwasher[0]->GEN(evMode())`Dishwasher
+Dishwasher[0]->GEN(evService())`Dishwasher
+Dishwasher[0]->GEN(evClose())`Dishwasher
+Dishwasher[0]->GEN(evOpen())`Dishwasher
 [Breakpoints]

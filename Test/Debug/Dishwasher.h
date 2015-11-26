@@ -4,7 +4,7 @@
 	Component	: Test 
 	Configuration 	: Debug
 	Model Element	: Dishwasher
-//!	Generated Date	: Tue, 24, Nov 2015  
+//!	Generated Date	: Thu, 26, Nov 2015  
 	File Path	: Test\Debug\Dishwasher.h
 *********************************************************************/
 
@@ -92,7 +92,7 @@ void Dishwasher_onEntDef(Dishwasher* const me);
 
 void Dishwasher_on_exit(Dishwasher* const me);
 
-void Dishwasher_on_entHist(Dishwasher* const me);
+void Dishwasher_on_entShallowHist(Dishwasher* const me);
 
 RiCTakeEventStatus Dishwasher_on_takeEvent(Dishwasher* const me, short id);
 
@@ -114,8 +114,8 @@ int Dishwasher_mode_IN(const Dishwasher* const me);
 /* quick: */
 int Dishwasher_quick_IN(const Dishwasher* const me);
 
-/* mode_drying: */
-int Dishwasher_mode_drying_IN(const Dishwasher* const me);
+/* intensive: */
+int Dishwasher_intensive_IN(const Dishwasher* const me);
 
 enum Dishwasher_Enum {
     Dishwasher_RiCNonState = 0,
@@ -132,7 +132,7 @@ enum Dishwasher_Enum {
     Dishwasher_off = 11,
     Dishwasher_mode = 12,
     Dishwasher_quick = 13,
-    Dishwasher_mode_drying = 14
+    Dishwasher_intensive = 14
 };
 
 #endif

@@ -4,7 +4,7 @@
 	Component	: Test 
 	Configuration 	: Debug
 	Model Element	: Dishwasher
-//!	Generated Date	: Tue, 24, Nov 2015  
+//!	Generated Date	: Thu, 26, Nov 2015  
 	File Path	: Test\Debug\Dishwasher.c
 *********************************************************************/
 
@@ -106,7 +106,7 @@ static RiCTakeEventStatus mode_dispatchEvent(Dishwasher* const me, short id);
 #ifdef _OMINSTRUMENT
 static void quick_serializeStates(const Dishwasher* const me, ARCSState * arcsState);
 
-static void mode_drying_serializeStates(const Dishwasher* const me, ARCSState * arcsState);
+static void intensive_serializeStates(const Dishwasher* const me, ARCSState * arcsState);
 #endif /* _OMINSTRUMENT */
 
 static void FreeInstance(Dishwasher* const me);
@@ -199,9 +199,14 @@ static void setup(Dishwasher* const me) {
     NOTIFY_OPERATION(me, &me, NULL, Dishwasher, setup, setup(), 0, Default_Dishwasher_setup_SERIALIZE);
     {
         /*#[ operation setup() */
-        me->rinseTime = 4;
-        me->washTime = 5;
-        me->dryTime = 3;
+        if (IS_IN(me, Dishwasher_quick)){
+        	me->rinseTime = 1;
+        	me->washTime = 1;
+        	me->dryTime = 1;
+        } else {        
+        	me->rinseTime = 4;
+        	me->washTime = 5;
+        	me->dryTime = 3;  }
         /*#]*/
     }
 }
@@ -302,10 +307,10 @@ void Dishwasher_Active_exit(Dishwasher* const me) {
             NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.mode.quick");
         }
         break;
-        /* State drying */
-        case Dishwasher_mode_drying:
+        /* State intensive */
+        case Dishwasher_intensive:
         {
-            NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.mode.drying");
+            NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.mode.intensive");
         }
         break;
         default:
@@ -343,7 +348,7 @@ int Dishwasher_on_IN(const Dishwasher* const me) {
 
 void Dishwasher_onEntDef(Dishwasher* const me) {
     NOTIFY_TRANSITION_STARTED(me, Dishwasher, "0");
-    Dishwasher_on_entHist(me);
+    Dishwasher_on_entShallowHist(me);
     NOTIFY_TRANSITION_TERMINATED(me, Dishwasher, "0");
 }
 
@@ -385,7 +390,7 @@ void Dishwasher_on_exit(Dishwasher* const me) {
     NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.running.on");
 }
 
-void Dishwasher_on_entHist(Dishwasher* const me) {
+void Dishwasher_on_entShallowHist(Dishwasher* const me) {
     if(me->on_lastState == Dishwasher_RiCNonState)
         {
             NOTIFY_NULL_TRANSITION_STARTED(me, Dishwasher, "12");
@@ -474,8 +479,8 @@ int Dishwasher_quick_IN(const Dishwasher* const me) {
     return me->mode_subState == Dishwasher_quick;
 }
 
-int Dishwasher_mode_drying_IN(const Dishwasher* const me) {
-    return me->mode_subState == Dishwasher_mode_drying;
+int Dishwasher_intensive_IN(const Dishwasher* const me) {
+    return me->mode_subState == Dishwasher_intensive;
 }
 
 #ifdef _OMINSTRUMENT
@@ -761,9 +766,7 @@ static RiCTakeEventStatus running_dispatchEvent(Dishwasher* const me, short id) 
                 {
                     NOTIFY_TRANSITION_STARTED(me, Dishwasher, "13");
                     NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.running.open");
-                    NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on");
-                    me->running_subState = Dishwasher_on;
-                    Dishwasher_on_entHist(me);
+                    on_entDef(me);
                     NOTIFY_TRANSITION_TERMINATED(me, Dishwasher, "13");
                     res = eventConsumed;
                 }
@@ -797,20 +800,23 @@ static RiCTakeEventStatus running_dispatchEvent(Dishwasher* const me, short id) 
                         }
                 }
                 break;
-                /*## transition 6 */
                 case Null_id:
                 {
-                    NOTIFY_NULL_TRANSITION_STARTED(me, Dishwasher, "6");
-                    RiCReactive_popNullConfig(&(me->ric_reactive));
-                    RiCTask_unschedTm(me->ric_reactive.myTask, Dishwasher_Timeout_washing_id, &(me->ric_reactive));
-                    NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.running.on.washing");
-                    NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on.rinsing");
-                    RiCReactive_pushNullConfig(&(me->ric_reactive));
-                    me->on_subState = Dishwasher_rinsing;
-                    me->running_active = Dishwasher_rinsing;
-                    RiCTask_schedTm(me->ric_reactive.myTask, 1000, Dishwasher_Timeout_rinsing_id, &(me->ric_reactive), "ROOT.Active.running.on.rinsing");
-                    NOTIFY_TRANSITION_TERMINATED(me, Dishwasher, "6");
-                    res = eventConsumed;
+                    /*## transition 6 */
+                    if(me->washTime == 0)
+                        {
+                            NOTIFY_NULL_TRANSITION_STARTED(me, Dishwasher, "6");
+                            RiCReactive_popNullConfig(&(me->ric_reactive));
+                            RiCTask_unschedTm(me->ric_reactive.myTask, Dishwasher_Timeout_washing_id, &(me->ric_reactive));
+                            NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.running.on.washing");
+                            NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on.rinsing");
+                            RiCReactive_pushNullConfig(&(me->ric_reactive));
+                            me->on_subState = Dishwasher_rinsing;
+                            me->running_active = Dishwasher_rinsing;
+                            RiCTask_schedTm(me->ric_reactive.myTask, 1000, Dishwasher_Timeout_rinsing_id, &(me->ric_reactive), "ROOT.Active.running.on.rinsing");
+                            NOTIFY_TRANSITION_TERMINATED(me, Dishwasher, "6");
+                            res = eventConsumed;
+                        }
                 }
                 break;
                 default:
@@ -836,7 +842,7 @@ static RiCTakeEventStatus running_dispatchEvent(Dishwasher* const me, short id) 
                             NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.running.on.rinsing");
                             {
                                 /*#[ transition 10 */
-                                --me->washTime;
+                                --me->rinseTime;
                                 /*#]*/
                             }
                             NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on.rinsing");
@@ -849,20 +855,23 @@ static RiCTakeEventStatus running_dispatchEvent(Dishwasher* const me, short id) 
                         }
                 }
                 break;
-                /*## transition 7 */
                 case Null_id:
                 {
-                    NOTIFY_NULL_TRANSITION_STARTED(me, Dishwasher, "7");
-                    RiCReactive_popNullConfig(&(me->ric_reactive));
-                    RiCTask_unschedTm(me->ric_reactive.myTask, Dishwasher_Timeout_rinsing_id, &(me->ric_reactive));
-                    NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.running.on.rinsing");
-                    NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on.drying");
-                    RiCReactive_pushNullConfig(&(me->ric_reactive));
-                    me->on_subState = Dishwasher_drying;
-                    me->running_active = Dishwasher_drying;
-                    RiCTask_schedTm(me->ric_reactive.myTask, 1000, Dishwasher_Timeout_drying_id, &(me->ric_reactive), "ROOT.Active.running.on.drying");
-                    NOTIFY_TRANSITION_TERMINATED(me, Dishwasher, "7");
-                    res = eventConsumed;
+                    /*## transition 7 */
+                    if(me->rinseTime == 0)
+                        {
+                            NOTIFY_NULL_TRANSITION_STARTED(me, Dishwasher, "7");
+                            RiCReactive_popNullConfig(&(me->ric_reactive));
+                            RiCTask_unschedTm(me->ric_reactive.myTask, Dishwasher_Timeout_rinsing_id, &(me->ric_reactive));
+                            NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.running.on.rinsing");
+                            NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on.drying");
+                            RiCReactive_pushNullConfig(&(me->ric_reactive));
+                            me->on_subState = Dishwasher_drying;
+                            me->running_active = Dishwasher_drying;
+                            RiCTask_schedTm(me->ric_reactive.myTask, 1000, Dishwasher_Timeout_drying_id, &(me->ric_reactive), "ROOT.Active.running.on.drying");
+                            NOTIFY_TRANSITION_TERMINATED(me, Dishwasher, "7");
+                            res = eventConsumed;
+                        }
                 }
                 break;
                 default:
@@ -996,9 +1005,9 @@ static void mode_serializeStates(const Dishwasher* const me, ARCSState * arcsSta
             quick_serializeStates(me, arcsState);
         }
         break;
-        case Dishwasher_mode_drying:
+        case Dishwasher_intensive:
         {
-            mode_drying_serializeStates(me, arcsState);
+            intensive_serializeStates(me, arcsState);
         }
         break;
         default:
@@ -1027,23 +1036,23 @@ static RiCTakeEventStatus mode_dispatchEvent(Dishwasher* const me, short id) {
                 {
                     NOTIFY_TRANSITION_STARTED(me, Dishwasher, "18");
                     NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.mode.quick");
-                    NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.mode.drying");
-                    me->mode_subState = Dishwasher_mode_drying;
-                    me->mode_active = Dishwasher_mode_drying;
+                    NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.mode.intensive");
+                    me->mode_subState = Dishwasher_intensive;
+                    me->mode_active = Dishwasher_intensive;
                     NOTIFY_TRANSITION_TERMINATED(me, Dishwasher, "18");
                     res = eventConsumed;
                 }
             
         }
         break;
-        /* State drying */
-        case Dishwasher_mode_drying:
+        /* State intensive */
+        case Dishwasher_intensive:
         {
             /*## transition 19 */
             if(id == evMode_Default_id)
                 {
                     NOTIFY_TRANSITION_STARTED(me, Dishwasher, "19");
-                    NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.mode.drying");
+                    NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.mode.intensive");
                     NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.mode.quick");
                     me->mode_subState = Dishwasher_quick;
                     me->mode_active = Dishwasher_quick;
@@ -1064,8 +1073,8 @@ static void quick_serializeStates(const Dishwasher* const me, ARCSState * arcsSt
     ARCSS_addState_OMH(arcsState, "ROOT.Active.mode.quick");
 }
 
-static void mode_drying_serializeStates(const Dishwasher* const me, ARCSState * arcsState) {
-    ARCSS_addState_OMH(arcsState, "ROOT.Active.mode.drying");
+static void intensive_serializeStates(const Dishwasher* const me, ARCSState * arcsState) {
+    ARCSS_addState_OMH(arcsState, "ROOT.Active.mode.intensive");
 }
 #endif /* _OMINSTRUMENT */
 

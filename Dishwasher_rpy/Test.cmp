@@ -3,7 +3,8 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 	- _id = GUID ae286b5e-4a30-46f8-817d-7ed641f437c0;
 	- _myState = 139264;
 	- _name = "Test";
-	- _modifiedTimeWeak = 11.24.2015::13:57:17;
+	- _modifiedTimeWeak = 11.26.2015::8:27:2;
+	- _lastID = 2;
 	- m_buildType = Executable;
 	- m_libraries = "";
 	- m_additionalSources = "";
@@ -25,10 +26,10 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 	}
 	- m_configActive = { ICodeGenConfigInfoHandle 
 		- _m2Class = "ICodeGenConfigInfo";
-		- _id = GUID bc47d625-a3c5-4a89-8b66-59ed7337977b;
+		- _id = GUID 6a5ee646-b74b-4846-8315-a58f0cbdeff1;
 	}
 	- Configs = { IRPYRawContainer 
-		- size = 1;
+		- size = 2;
 		- value = 
 		{ ICodeGenConfigInfo 
 			- _id = GUID bc47d625-a3c5-4a89-8b66-59ed7337977b;
@@ -109,6 +110,76 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 			- m_allInAnimScope = 1;
 			- m_generateUsecases = 0;
 		}
+		{ ICodeGenConfigInfo 
+			- _id = GUID 6a5ee646-b74b-4846-8315-a58f0cbdeff1;
+			- _myState = 8192;
+			- _name = "Sim";
+			- _modifiedTimeWeak = 11.26.2015::8:27:40;
+			- HyperLinks = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IMHyperLink 
+					- _id = GUID be2ee3b3-8be8-4674-ba69-cb057383e78f;
+					- _modifiedTimeWeak = 1.2.1990::0:0:0;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Makefile";
+					- _linkType = "FREE";
+					- _linkTarget = "C:\\Users\\adamlang\\Documents\\GitHub\\ES_Labb2\\Test\\configuration_1\\Test.mak";
+					- isConfigurationFileHyperLink = 1;
+				}
+				{ IMHyperLink 
+					- _id = GUID a86d7803-bac1-431d-a563-0c764507cf90;
+					- _modifiedTimeWeak = 1.2.1990::0:0:0;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Main File";
+					- _linkType = "FREE";
+					- _linkTarget = "C:\\Users\\adamlang\\Documents\\GitHub\\ES_Labb2\\Test\\configuration_1\\MainTest";
+					- isConfigurationFileHyperLink = 1;
+				}
+			}
+			- _scopeType = Explicit;
+			- _libraries = "";
+			- _additionalSources = "";
+			- _standardHeaders = "";
+			- _includePath = "";
+			- _targetMain = "";
+			- _instrumentation = Animation;
+			- _timeModel = Simulated;
+			- m_generateActors = 1;
+			- _statechartImplementation = Flat;
+			- _initializationCode = "";
+			- _checksList = 0 ;
+			- ScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- InitialInstances = { IRPYRawContainer 
+				- size = 0;
+			}
+			- _root = { IFolder 
+				- _id = GUID 282ff03d-55fe-4135-af20-8145946fb754;
+				- _myState = 8192;
+				- _name = "Sim";
+				- _modifiedTimeWeak = 11.26.2015::8:27:19;
+				- m_path = "";
+				- Elements = { IRPYRawContainer 
+					- size = 0;
+				}
+				- Files = { IRPYRawContainer 
+					- size = 0;
+				}
+			}
+			- weakCGTime = 11.26.2015::8:27:40;
+			- strongCGTime = 11.26.2015::8:27:40;
+			- AnimScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- m_allInAnimScope = 1;
+			- m_generateUsecases = 0;
+		}
 	}
 	- HandlesInMe = { IRPYRawContainer 
 		- size = 1;
@@ -128,7 +199,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 	- SelectedVariants = { IRPYRawContainer 
 		- size = 0;
 	}
-	- weakCGTime = 11.24.2015::13:57:17;
+	- weakCGTime = 11.26.2015::8:27:2;
 	- strongCGTime = 11.24.2015::13:30:1;
 }
 
