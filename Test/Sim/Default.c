@@ -50,6 +50,14 @@
 
 #define evService_CONSTRUCTOR RiC_Create_evService()
 
+#define evIntDry_SERIALIZE OM_NO_OP
+
+#define evIntDry_UNSERIALIZE OM_NO_OP
+
+#define evIntDry_DECLARE_PARAMS OM_NO_OP
+
+#define evIntDry_CONSTRUCTOR RiC_Create_evIntDry()
+
 /*## package Default */
 
 
@@ -67,6 +75,7 @@ void Default_OMEvent_Init(void) {
     ARC_INIT_EVENT(evOpen);
     ARC_INIT_EVENT(evMode);
     ARC_INIT_EVENT(evService);
+    ARC_INIT_EVENT(evIntDry);
 }
 #endif /* _OMINSTRUMENT */
 
@@ -211,6 +220,35 @@ void RiC_Destroy_evService(evService* const me) {
     if(me!=NULL)
         {
             evService_Cleanup(me);
+        }
+    free(me);
+}
+
+OM_INSTRUMENT_EVENT(evIntDry, Default, Default, evIntDry(), me)
+
+void evIntDry_Init(evIntDry* const me) {
+    OM_INSTRUMENT_EVENT_INSTANCE(me, evIntDry)
+    RiCEvent_init(&(me->ric_event), evIntDry_Default_id, NULL);
+    RIC_SET_EVENT_DESTROY_OP(me, evIntDry);
+}
+
+void evIntDry_Cleanup(evIntDry* const me) {
+    RiCEvent_cleanup(&(me->ric_event));
+}
+
+evIntDry * RiC_Create_evIntDry(void) {
+    evIntDry* me = (evIntDry*) malloc(sizeof(evIntDry));
+    if(me!=NULL)
+        {
+            evIntDry_Init(me);
+        }
+    return me;
+}
+
+void RiC_Destroy_evIntDry(evIntDry* const me) {
+    if(me!=NULL)
+        {
+            evIntDry_Cleanup(me);
         }
     free(me);
 }

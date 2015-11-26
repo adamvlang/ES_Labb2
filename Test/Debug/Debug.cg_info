@@ -6,8 +6,8 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	"DefaultComponent\\DefaultConfig\\Dishwasher.h" 11.24.2015::13:26:28
 	"Test\\Debug\\Default.c" 11.26.2015::7:52:19
 	"Test\\Debug\\Default.h" 11.26.2015::7:52:19
-	"Test\\Debug\\Dishwasher.c" 11.26.2015::9:23:26
-	"Test\\Debug\\Dishwasher.h" 11.26.2015::9:14:59
+	"Test\\Debug\\Dishwasher.c" 11.26.2015::14:26:44
+	"Test\\Debug\\Dishwasher.h" 11.26.2015::14:26:44
 	
 }
 - size = 3;
@@ -19,7 +19,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "Default";
 	- _id = GUID dcb63ddb-7508-483e-9b23-93ecb1f8f987;
 }
-- genTime = 11.26.2015::9:22:3;
+- genTime = 11.26.2015::14:24:28;
 - hElement = { IHandle 
 	- _m2Class = "ICodeGenConfigInfo";
 	- _filename = "Test.cmp";
@@ -28,7 +28,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "Test\\Debug";
 	- _id = GUID bc47d625-a3c5-4a89-8b66-59ed7337977b;
 }
-- genTime = 11.26.2015::9:23:26;
+- genTime = 11.26.2015::14:27:54;
 - hElement = { IHandle 
 	- _m2Class = "IClass";
 	- _filename = "Default.sbs";
@@ -37,5 +37,5 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "Dishwasher";
 	- _id = GUID 2823177a-2872-4cd0-aacf-ea6d38b24975;
 }
-- genTime = 11.26.2015::9:23:26;
+- genTime = 11.26.2015::14:27:54;
 

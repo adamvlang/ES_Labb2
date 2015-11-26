@@ -2,10 +2,10 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 
 - m_fileModifyTime = { IRPYRawContainer 
 	- size = 4;
-	- value = "Test\\Sim\\Default.c" 11.26.2015::8:51:51
-	"Test\\Sim\\Default.h" 11.26.2015::8:51:51
-	"Test\\Sim\\Dishwasher.c" 11.26.2015::9:19:6
-	"Test\\Sim\\Dishwasher.h" 11.26.2015::9:17:35
+	- value = "Test\\Sim\\Default.c" 11.26.2015::14:58:29
+	"Test\\Sim\\Default.h" 11.26.2015::14:58:29
+	"Test\\Sim\\Dishwasher.c" 11.26.2015::15:0:57
+	"Test\\Sim\\Dishwasher.h" 11.26.2015::14:58:29
 	
 }
 - size = 3;
@@ -17,7 +17,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "Default";
 	- _id = GUID dcb63ddb-7508-483e-9b23-93ecb1f8f987;
 }
-- genTime = 11.26.2015::9:19:6;
+- genTime = 11.26.2015::14:58:29;
 - hElement = { IHandle 
 	- _m2Class = "ICodeGenConfigInfo";
 	- _filename = "Test.cmp";
@@ -26,7 +26,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "Test\\Sim";
 	- _id = GUID 6a5ee646-b74b-4846-8315-a58f0cbdeff1;
 }
-- genTime = 11.26.2015::9:21:29;
+- genTime = 11.26.2015::15:0:57;
 - hElement = { IHandle 
 	- _m2Class = "IClass";
 	- _filename = "Default.sbs";
@@ -35,5 +35,5 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "Dishwasher";
 	- _id = GUID 2823177a-2872-4cd0-aacf-ea6d38b24975;
 }
-- genTime = 11.26.2015::9:21:29;
+- genTime = 11.26.2015::15:0:57;
 

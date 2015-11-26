@@ -23,6 +23,8 @@
 
 #define evService_Default_id 18605
 
+#define evIntDry_Default_id 18606
+
 struct Dishwasher;
 
 /*## package Default */
@@ -97,6 +99,19 @@ void evService_Cleanup(evService* const me);
 evService * RiC_Create_evService(void);
 
 void RiC_Destroy_evService(evService* const me);
+
+typedef struct evIntDry evIntDry;
+struct evIntDry {
+    RiCEvent ric_event;
+};
+
+void evIntDry_Init(evIntDry* const me);
+
+void evIntDry_Cleanup(evIntDry* const me);
+
+evIntDry * RiC_Create_evIntDry(void);
+
+void RiC_Destroy_evIntDry(evIntDry* const me);
 
 #endif
 /*********************************************************************

@@ -26,7 +26,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 	}
 	- m_configActive = { ICodeGenConfigInfoHandle 
 		- _m2Class = "ICodeGenConfigInfo";
-		- _id = GUID bc47d625-a3c5-4a89-8b66-59ed7337977b;
+		- _id = GUID 6a5ee646-b74b-4846-8315-a58f0cbdeff1;
 	}
 	- Configs = { IRPYRawContainer 
 		- size = 2;
@@ -114,7 +114,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 			- _id = GUID 6a5ee646-b74b-4846-8315-a58f0cbdeff1;
 			- _myState = 8192;
 			- _name = "Sim";
-			- _modifiedTimeWeak = 11.26.2015::9:18:3;
+			- _modifiedTimeWeak = 11.26.2015::14:42:39;
 			- HyperLinks = { IRPYRawContainer 
 				- size = 2;
 				- value = 
@@ -181,8 +181,8 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 					- size = 0;
 				}
 			}
-			- weakCGTime = 11.26.2015::9:18:3;
-			- strongCGTime = 11.26.2015::9:18:3;
+			- weakCGTime = 11.26.2015::14:42:39;
+			- strongCGTime = 11.26.2015::14:42:39;
 			- AnimScopeElements = { IRPYRawContainer 
 				- size = 0;
 			}

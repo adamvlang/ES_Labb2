@@ -739,22 +739,26 @@ static RiCTakeEventStatus running_dispatchEvent(Dishwasher* const me, short id) 
         {
             if(id == evStart_Default_id)
                 {
-                    NOTIFY_TRANSITION_STARTED(me, Dishwasher, "4");
-                    NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.running.off");
-                    {
-                        /*#[ transition 4 */
-                        setup(me);
-                        /*#]*/
-                    }
-                    NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on");
-                    me->running_subState = Dishwasher_on;
-                    NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on.washing");
-                    RiCReactive_pushNullConfig(&(me->ric_reactive));
-                    me->on_subState = Dishwasher_washing;
-                    me->running_active = Dishwasher_washing;
-                    RiCTask_schedTm(me->ric_reactive.myTask, 1000, Dishwasher_Timeout_washing_id, &(me->ric_reactive), "ROOT.Active.running.on.washing");
-                    NOTIFY_TRANSITION_TERMINATED(me, Dishwasher, "4");
-                    res = eventConsumed;
+                    /*## transition 4 */
+                    if(~IS_IN(me, Dishwasher_faulty))
+                        {
+                            NOTIFY_TRANSITION_STARTED(me, Dishwasher, "4");
+                            NOTIFY_STATE_EXITED(me, Dishwasher, "ROOT.Active.running.off");
+                            {
+                                /*#[ transition 4 */
+                                setup(me);
+                                /*#]*/
+                            }
+                            NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on");
+                            me->running_subState = Dishwasher_on;
+                            NOTIFY_STATE_ENTERED(me, Dishwasher, "ROOT.Active.running.on.washing");
+                            RiCReactive_pushNullConfig(&(me->ric_reactive));
+                            me->on_subState = Dishwasher_washing;
+                            me->running_active = Dishwasher_washing;
+                            RiCTask_schedTm(me->ric_reactive.myTask, 1000, Dishwasher_Timeout_washing_id, &(me->ric_reactive), "ROOT.Active.running.on.washing");
+                            NOTIFY_TRANSITION_TERMINATED(me, Dishwasher, "4");
+                            res = eventConsumed;
+                        }
                 }
             
         }

@@ -29,7 +29,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 		}
 	}
 	- _name = "Dishwasher";
-	- _modifiedTimeWeak = 11.26.2015::9:9:18;
+	- _modifiedTimeWeak = 11.26.2015::14:12:6;
 	- _lastID = 1;
 	- _UserColors = { IRPYRawContainer 
 		- size = 16;
@@ -495,7 +495,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 			}
 			- _name = "Dishwasher panel";
 			- _modifiedTimeWeak = 1.2.1990::0:0:0;
-			- _lastModifiedTime = "11.26.2015::9:9:45";
+			- _lastModifiedTime = "11.26.2015::14:59:16";
 			- _graphicChart = { CGIClassChart 
 				- _id = GUID 65e632c4-3039-4d7a-a402-0a9d35078742;
 				- m_type = 0;
@@ -519,7 +519,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 				}
 				- m_drawBehavior = 0;
 				- m_bIsPreferencesInitialized = 0;
-				- elementList = 21;
+				- elementList = 22;
 				{ CGIBox 
 					- _id = GUID 4ba64903-e514-4056-8037-13f7f302ede4;
 					- m_type = 215;
@@ -2020,6 +2020,81 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 							- _id = GUID 2823177a-2872-4cd0-aacf-ea6d38b24975;
 						}
 					}
+				}
+				{ CGIMFCCtrl 
+					- _id = GUID 8cfb25dd-d2f8-4118-ae46-03d0cca66bf6;
+					- _properties = { IPropertyContainer 
+						- Subjects = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertySubject 
+								- _Name = "PanelDiagram";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "PushButton";
+										- Properties = { IRPYRawContainer 
+											- size = 1;
+											- value = 
+											{ IProperty 
+												- _Name = "ButtonFont";
+												- _Value = "Arial 10 NoBold NoItalic";
+												- _Type = String;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					- m_type = 227;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "IReception";
+						- _filename = "Default.sbs";
+						- _subsystem = "Default";
+						- _class = "Dishwasher";
+						- _name = "evIntDry()";
+						- _id = GUID e0cfbb4a-2cde-41ff-a359-c30a5cfc5499;
+					}
+					- m_pParent = GUID 4ba64903-e514-4056-8037-13f7f302ede4;
+					- m_name = { CGIText 
+						- m_str = "";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 1;
+					}
+					- m_drawBehavior = 4096;
+					- m_transform = 0.000971062 0 0 0.00043576 898 371.485 ;
+					- m_bIsPreferencesInitialized = 1;
+					- m_polygon = 4 0 -1114  0 113628  102980 113628  102980 -1114  ;
+					- m_nNameFormat = 0;
+					- m_nIsNameFormat = 0;
+					- Compartments = { IRPYRawContainer 
+						- size = 0;
+					}
+					- m_csModelObjPath = "Default.Dishwasher[0].evIntDry";
+					- m_csName = "";
+					- m_PartsArray = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IClass";
+							- _filename = "Default.sbs";
+							- _subsystem = "Default";
+							- _class = "";
+							- _name = "Dishwasher";
+							- _id = GUID 2823177a-2872-4cd0-aacf-ea6d38b24975;
+						}
+					}
+					- m_csButtonCaption = "Interupt drying";
 				}
 				
 				- m_access = 'Z';
