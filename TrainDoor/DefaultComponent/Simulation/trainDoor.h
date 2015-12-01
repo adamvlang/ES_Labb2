@@ -22,11 +22,13 @@
 /*## auto_generated */
 #include <oxf\RiCEvent.h>
 /*#[ ignore */
-#define trainDoor_Timeout_closing_id 3
+#define trainDoor_Timeout_closing_id 4
 
-#define trainDoor_Timeout_open_id 2
+#define trainDoor_Timeout_open_id 3
 
-#define trainDoor_Timeout_opening_id 1
+#define trainDoor_Timeout_opening_id 2
+
+#define trainDoor_Timeout_notAtPlatform_id 1
 /*#]*/
 
 /*## package Default */
@@ -40,6 +42,7 @@ struct trainDoor {
     /*#[ ignore */
     int rootState_subState;
     int rootState_active;
+    int atPlatform_subState;
     /*#]*/
 };
 
@@ -55,9 +58,6 @@ void trainDoor_Init(trainDoor* const me, RiCTask * p_task);
 void trainDoor_Cleanup(trainDoor* const me);
 
 /*## auto_generated */
-void trainDoor_setOpenTime(trainDoor* const me, int p_openTime);
-
-/*## auto_generated */
 trainDoor * trainDoor_Create(RiCTask * p_task);
 
 /*## auto_generated */
@@ -71,6 +71,20 @@ RiCBoolean trainDoor_startBehavior(trainDoor* const me);
 /* rootState: */
 /*## statechart_method */
 int trainDoor_rootState_IN(const trainDoor* const me);
+
+/* notAtPlatform: */
+/*## statechart_method */
+int trainDoor_notAtPlatform_IN(const trainDoor* const me);
+
+/* atPlatform: */
+/*## statechart_method */
+int trainDoor_atPlatform_IN(const trainDoor* const me);
+
+/*## statechart_method */
+void trainDoor_atPlatform_exit(trainDoor* const me);
+
+/*## statechart_method */
+RiCTakeEventStatus trainDoor_atPlatform_takeEvent(trainDoor* const me, short id);
 
 /* opening: */
 /*## statechart_method */
@@ -91,10 +105,12 @@ int trainDoor_closed_IN(const trainDoor* const me);
 /*#[ ignore */
 enum trainDoor_Enum {
     trainDoor_RiCNonState = 0,
-    trainDoor_opening = 1,
-    trainDoor_open = 2,
-    trainDoor_closing = 3,
-    trainDoor_closed = 4
+    trainDoor_notAtPlatform = 1,
+    trainDoor_atPlatform = 2,
+    trainDoor_opening = 3,
+    trainDoor_open = 4,
+    trainDoor_closing = 5,
+    trainDoor_closed = 6
 };
 /*#]*/
 

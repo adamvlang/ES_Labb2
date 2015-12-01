@@ -28,6 +28,14 @@
 #define entered_DECLARE_PARAMS OM_NO_OP
 
 #define entered_CONSTRUCTOR RiC_Create_entered()
+
+#define rollOut_SERIALIZE OM_NO_OP
+
+#define rollOut_UNSERIALIZE OM_NO_OP
+
+#define rollOut_DECLARE_PARAMS OM_NO_OP
+
+#define rollOut_CONSTRUCTOR RiC_Create_rollOut()
 /*#]*/
 
 /*## package Default */
@@ -46,6 +54,7 @@ OM_INSTRUMENT_PACKAGE(Default, Default, &Default_instrumentVtbl)
 void Default_OMEvent_Init(void) {
     ARC_INIT_EVENT(evBPress);
     ARC_INIT_EVENT(entered);
+    ARC_INIT_EVENT(rollOut);
 }
 #endif /* _OMINSTRUMENT */
 
@@ -106,6 +115,37 @@ void RiC_Destroy_entered(entered* const me) {
     if(me!=NULL)
         {
             entered_Cleanup(me);
+        }
+    free(me);
+}
+/*#]*/
+
+OM_INSTRUMENT_EVENT(rollOut, Default, Default, rollOut(), me)
+
+void rollOut_Init(rollOut* const me) {
+    OM_INSTRUMENT_EVENT_INSTANCE(me, rollOut)
+    RiCEvent_init(&(me->ric_event), rollOut_Default_id, NULL);
+    RIC_SET_EVENT_DESTROY_OP(me, rollOut);
+}
+
+void rollOut_Cleanup(rollOut* const me) {
+    RiCEvent_cleanup(&(me->ric_event));
+}
+
+/*#[ ignore */
+rollOut * RiC_Create_rollOut(void) {
+    rollOut* me = (rollOut*) malloc(sizeof(rollOut));
+    if(me!=NULL)
+        {
+            rollOut_Init(me);
+        }
+    return me;
+}
+
+void RiC_Destroy_rollOut(rollOut* const me) {
+    if(me!=NULL)
+        {
+            rollOut_Cleanup(me);
         }
     free(me);
 }

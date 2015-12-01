@@ -19,6 +19,8 @@
 #define evBPress_Default_id 18601
 
 #define entered_Default_id 18602
+
+#define rollOut_Default_id 18603
 /*#]*/
 
 /*## auto_generated */
@@ -65,6 +67,24 @@ void entered_Cleanup(entered* const me);
 entered * RiC_Create_entered(void);
 
 void RiC_Destroy_entered(entered* const me);
+/*#]*/
+
+typedef struct rollOut rollOut;
+/*## event rollOut() */
+struct rollOut {
+    RiCEvent ric_event;
+};
+
+/*## auto_generated */
+void rollOut_Init(rollOut* const me);
+
+/*## auto_generated */
+void rollOut_Cleanup(rollOut* const me);
+
+/*#[ ignore */
+rollOut * RiC_Create_rollOut(void);
+
+void RiC_Destroy_rollOut(rollOut* const me);
 /*#]*/
 
 #endif

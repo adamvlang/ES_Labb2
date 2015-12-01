@@ -3,7 +3,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 	- _id = GUID 14eef766-33df-4568-9e9f-d2730e16d4d8;
 	- _myState = 8192;
 	- _name = "TrainDoor";
-	- _modifiedTimeWeak = 12.1.2015::8:5:2;
+	- _modifiedTimeWeak = 12.1.2015::8:56:36;
 	- _lastID = 1;
 	- _UserColors = { IRPYRawContainer 
 		- size = 16;
@@ -408,8 +408,57 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 					{ IPropertySubject 
 						- _Name = "Format";
 						- Metaclasses = { IRPYRawContainer 
-							- size = 1;
+							- size = 4;
 							- value = 
+							{ IPropertyMetaclass 
+								- _Name = "Ellipse";
+								- Properties = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IProperty 
+										- _Name = "Line.LineWidth";
+										- _Value = "0";
+										- _Type = Int;
+									}
+								}
+							}
+							{ IPropertyMetaclass 
+								- _Name = "FreeText";
+								- Properties = { IRPYRawContainer 
+									- size = 6;
+									- value = 
+									{ IProperty 
+										- _Name = "Fill.Transparent_Fill";
+										- _Value = "1";
+										- _Type = Int;
+									}
+									{ IProperty 
+										- _Name = "HorzAlign";
+										- _Value = "0";
+										- _Type = Int;
+									}
+									{ IProperty 
+										- _Name = "Line.Transparent";
+										- _Value = "1";
+										- _Type = Int;
+									}
+									{ IProperty 
+										- _Name = "Multiline";
+										- _Value = "True";
+										- _Type = Bool;
+									}
+									{ IProperty 
+										- _Name = "VertAlign";
+										- _Value = "0";
+										- _Type = Int;
+									}
+									{ IProperty 
+										- _Name = "Wordbreak";
+										- _Value = "False";
+										- _Type = Bool;
+									}
+								}
+							}
 							{ IPropertyMetaclass 
 								- _Name = "PushButton";
 								- Properties = { IRPYRawContainer 
@@ -442,6 +491,18 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 									}
 								}
 							}
+							{ IPropertyMetaclass 
+								- _Name = "Rectangle";
+								- Properties = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IProperty 
+										- _Name = "Line.LineWidth";
+										- _Value = "0";
+										- _Type = Int;
+									}
+								}
+							}
 						}
 					}
 					{ IPropertySubject 
@@ -467,7 +528,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 			}
 			- _name = "Panel";
 			- _modifiedTimeWeak = 1.2.1990::0:0:0;
-			- _lastModifiedTime = "12.1.2015::8:27:8";
+			- _lastModifiedTime = "12.1.2015::8:57:28";
 			- _graphicChart = { CGIClassChart 
 				- _id = GUID b1736788-66fe-45da-9b5e-ec7a57b51b92;
 				- m_type = 0;
@@ -491,7 +552,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 				}
 				- m_drawBehavior = 0;
 				- m_bIsPreferencesInitialized = 0;
-				- elementList = 6;
+				- elementList = 13;
 				{ CGIBox 
 					- _id = GUID 53500504-853b-4b21-bac2-397852809fd1;
 					- m_type = 215;
@@ -526,6 +587,121 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 						- size = 0;
 					}
 				}
+				{ CGIFreeShape 
+					- _id = GUID 20a8be1d-a455-43e0-ab91-882299a4f1d1;
+					- _properties = { IPropertyContainer 
+						- Subjects = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertySubject 
+								- _Name = "Format";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "Rectangle";
+										- Properties = { IRPYRawContainer 
+											- size = 1;
+											- value = 
+											{ IProperty 
+												- _Name = "Fill.FillColor";
+												- _Value = "128,128,64";
+												- _Type = Color;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					- m_type = 185;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "";
+					}
+					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
+					- m_name = { CGIText 
+						- m_str = "";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 8;
+					}
+					- m_drawBehavior = 4096;
+					- m_transform = 1 0 0 1 -24 12 ;
+					- m_bIsPreferencesInitialized = 1;
+					- m_points = 4 288 504  972 504  972 600  288 600  ;
+				}
+				{ CGIFreeShape 
+					- _id = GUID 38502d0c-d5cb-40d3-be3c-215aac442451;
+					- _properties = { IPropertyContainer 
+						- Subjects = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertySubject 
+								- _Name = "Format";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "Ellipse";
+										- Properties = { IRPYRawContainer 
+											- size = 4;
+											- value = 
+											{ IProperty 
+												- _Name = "Fill.BackgroundColor";
+												- _Value = "128,64,0";
+												- _Type = Color;
+											}
+											{ IProperty 
+												- _Name = "Fill.FillColor";
+												- _Value = "128,128,0";
+												- _Type = Color;
+											}
+											{ IProperty 
+												- _Name = "Fill.FillStyle";
+												- _Value = "2";
+												- _Type = Int;
+											}
+											{ IProperty 
+												- _Name = "Line.LineColor";
+												- _Value = "128,128,0";
+												- _Type = Color;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					- m_type = 188;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "";
+					}
+					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
+					- m_name = { CGIText 
+						- m_str = "";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 8;
+					}
+					- m_drawBehavior = 4096;
+					- m_transform = 1 0 0 1 -36 -12 ;
+					- m_bIsPreferencesInitialized = 1;
+					- m_points = 4 168 72  1092 72  1092 504  168 504  ;
+				}
 				{ CGIMFCCtrl 
 					- _id = GUID 5ae0b67b-d4e6-4aaa-829b-67c3cf3f4bd3;
 					- _properties = { IPropertyContainer 
@@ -544,7 +720,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 											- value = 
 											{ IProperty 
 												- _Name = "ButtonFont";
-												- _Value = "Arial 10 NoBold NoItalic";
+												- _Value = "Old English Text MT 18 NoBold NoItalic";
 												- _Type = String;
 											}
 											{ IProperty 
@@ -583,7 +759,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 						- m_nOrientationCtrlPt = 1;
 					}
 					- m_drawBehavior = 8192;
-					- m_transform = 0.00148573 0 0 0.000906381 552 329.01 ;
+					- m_transform = 0.00197126 0 0 0.000993533 409 307.107 ;
 					- m_bIsPreferencesInitialized = 1;
 					- m_polygon = 4 0 -1114  0 113628  102980 113628  102980 -1114  ;
 					- m_nNameFormat = 0;
@@ -640,7 +816,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 						- _filename = "Default.sbs";
 						- _subsystem = "Default";
 						- _class = "trainDoor";
-						- _name = "ROOT.open";
+						- _name = "ROOT.atPlatform.open";
 						- _id = GUID 673e8d2c-e50b-4f37-bb66-3d57c5ac5b1f;
 					}
 					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
@@ -699,7 +875,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 											- value = 
 											{ IProperty 
 												- _Name = "ActiveXProperties@Child.ActiveXControl";
-												- _Value = "BackColor;16777215;BlackWhenOff;0;Blinking;0;BlinkingTimeMillisec;300;Color;2;State;0;Style;0;";
+												- _Value = "BackColor;16777215;BlackWhenOff;0;Blinking;-1;BlinkingTimeMillisec;300;Color;2;State;0;Style;0;";
 												- _Type = String;
 											}
 										}
@@ -714,7 +890,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 						- _filename = "Default.sbs";
 						- _subsystem = "Default";
 						- _class = "trainDoor";
-						- _name = "ROOT.closing";
+						- _name = "ROOT.atPlatform.closing";
 						- _id = GUID c33a17f2-8ac8-42ac-ab84-ac14077ddae2;
 					}
 					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
@@ -788,7 +964,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 						- _filename = "Default.sbs";
 						- _subsystem = "Default";
 						- _class = "trainDoor";
-						- _name = "ROOT.closed";
+						- _name = "ROOT.atPlatform.closed";
 						- _id = GUID 2ae2262d-e45c-4e72-8358-4b2bbf72e1dc;
 					}
 					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
@@ -847,7 +1023,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 											- value = 
 											{ IProperty 
 												- _Name = "ActiveXProperties@Child.ActiveXControl";
-												- _Value = "BackColor;16777215;BlackWhenOff;0;Blinking;0;BlinkingTimeMillisec;300;Color;2;State;0;Style;0;";
+												- _Value = "BackColor;16777215;BlackWhenOff;0;Blinking;-1;BlinkingTimeMillisec;300;Color;0;State;0;Style;4;";
 												- _Type = String;
 											}
 										}
@@ -862,7 +1038,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 						- _filename = "Default.sbs";
 						- _subsystem = "Default";
 						- _class = "trainDoor";
-						- _name = "ROOT.opening";
+						- _name = "ROOT.atPlatform.opening";
 						- _id = GUID 56824133-1c42-4758-9590-7aacf6eaf041;
 					}
 					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
@@ -901,6 +1077,345 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 							- _name = "trainDoor";
 							- _id = GUID 6a31b546-f7bb-407b-a9d9-e9ab67ca82bc;
 						}
+					}
+				}
+				{ CGIActiveX 
+					- _id = GUID cde1fbee-ee0a-46d0-b08a-415b333fac7e;
+					- _properties = { IPropertyContainer 
+						- Subjects = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertySubject 
+								- _Name = "Format";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "Led";
+										- Properties = { IRPYRawContainer 
+											- size = 1;
+											- value = 
+											{ IProperty 
+												- _Name = "ActiveXProperties@Child.ActiveXControl";
+												- _Value = "BackColor;16777215;BlackWhenOff;0;Blinking;-1;BlinkingTimeMillisec;300;Color;0;State;0;Style;2;";
+												- _Type = String;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					- m_type = 219;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "IState";
+						- _filename = "Default.sbs";
+						- _subsystem = "Default";
+						- _class = "trainDoor";
+						- _name = "ROOT.atPlatform";
+						- _id = GUID b85052b6-eb2b-4167-93ae-a50851670d0a;
+					}
+					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
+					- m_name = { CGIText 
+						- m_str = "At platform";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 1;
+					}
+					- m_drawBehavior = 4096;
+					- m_transform = 0.000126238 0 0 0.000113298 623 138.126 ;
+					- m_bIsPreferencesInitialized = 1;
+					- m_polygon = 4 0 -1114  0 113628  102980 113628  102980 -1114  ;
+					- m_nNameFormat = 0;
+					- m_nIsNameFormat = 0;
+					- Compartments = { IRPYRawContainer 
+						- size = 0;
+					}
+					- m_csModelObjPath = "Default.trainDoor[0].statechart_3.atPlatform";
+					- m_csName = "At platform";
+					- m_PartsArray = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IClass";
+							- _filename = "Default.sbs";
+							- _subsystem = "Default";
+							- _class = "";
+							- _name = "trainDoor";
+							- _id = GUID 6a31b546-f7bb-407b-a9d9-e9ab67ca82bc;
+						}
+					}
+				}
+				{ CGIMFCCtrl 
+					- _id = GUID 89107bc9-0f8b-4859-8c63-6643dfa54551;
+					- _properties = { IPropertyContainer 
+						- Subjects = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertySubject 
+								- _Name = "PanelDiagram";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "PushButton";
+										- Properties = { IRPYRawContainer 
+											- size = 1;
+											- value = 
+											{ IProperty 
+												- _Name = "ButtonFont";
+												- _Value = "Rosewood Std Regular 26 Bold NoItalic";
+												- _Type = String;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					- m_type = 227;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "IReception";
+						- _filename = "Default.sbs";
+						- _subsystem = "Default";
+						- _class = "trainDoor";
+						- _name = "rollOut()";
+						- _id = GUID 9a48aad8-58b7-4778-ab45-96278e0d6258;
+					}
+					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
+					- m_name = { CGIText 
+						- m_str = "";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 1;
+					}
+					- m_drawBehavior = 4096;
+					- m_transform = 0.00195183 0 0 0.000993534 650 307.107 ;
+					- m_bIsPreferencesInitialized = 1;
+					- m_polygon = 4 0 -1114  0 113628  102980 113628  102980 -1114  ;
+					- m_nNameFormat = 0;
+					- m_nIsNameFormat = 0;
+					- Compartments = { IRPYRawContainer 
+						- size = 0;
+					}
+					- m_csModelObjPath = "Default.trainDoor[0].rollOut";
+					- m_csName = "";
+					- m_PartsArray = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IClass";
+							- _filename = "Default.sbs";
+							- _subsystem = "Default";
+							- _class = "";
+							- _name = "trainDoor";
+							- _id = GUID 6a31b546-f7bb-407b-a9d9-e9ab67ca82bc;
+						}
+					}
+					- m_csButtonCaption = "Roll Out";
+				}
+				{ CGIFreeText 
+					- _id = GUID 9bea5f1c-9f5e-4aba-bbf1-1525eda2a1f9;
+					- _properties = { IPropertyContainer 
+						- Subjects = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertySubject 
+								- _Name = "Format";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "FreeText";
+										- Properties = { IRPYRawContainer 
+											- size = 3;
+											- value = 
+											{ IProperty 
+												- _Name = "Font.Font";
+												- _Value = "Old English Text MT";
+												- _Type = String;
+											}
+											{ IProperty 
+												- _Name = "Font.Height";
+												- _Value = "37";
+												- _Type = Int;
+											}
+											{ IProperty 
+												- _Name = "Font.Size";
+												- _Value = "28";
+												- _Type = Int;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					- m_type = 189;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "";
+					}
+					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
+					- m_name = { CGIText 
+						- m_str = "";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 8;
+					}
+					- m_drawBehavior = 4096;
+					- m_transform = 1 0 0 1 132 -12 ;
+					- m_bIsPreferencesInitialized = 1;
+					- m_points = 4 288 552  326 552  326 570  288 570  ;
+					- m_text = "Ye Olde Steam Train";
+				}
+				{ CGIActiveX 
+					- _id = GUID f902c130-0d58-4707-b1e0-3444c835a416;
+					- _properties = { IPropertyContainer 
+						- Subjects = { IRPYRawContainer 
+							- size = 2;
+							- value = 
+							{ IPropertySubject 
+								- _Name = "Format";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "OnOffSwitch";
+										- Properties = { IRPYRawContainer 
+											- size = 1;
+											- value = 
+											{ IProperty 
+												- _Name = "ActiveXProperties@Child.ActiveXControl";
+												- _Value = "BackColor;16777215;IconSet;6;State;0;UserInteractionEnabled;-1;";
+												- _Type = String;
+											}
+										}
+									}
+								}
+							}
+							{ IPropertySubject 
+								- _Name = "PanelDiagram";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "OnOffSwitch";
+										- Properties = { IRPYRawContainer 
+											- size = 1;
+											- value = 
+											{ IProperty 
+												- _Name = "Direction";
+												- _Value = "InOut";
+												- _Type = Enum;
+												- _ExtraTypeInfo = "";
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					- m_type = 222;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "IAttribute";
+						- _filename = "Default.sbs";
+						- _subsystem = "Default";
+						- _class = "trainDoor";
+						- _name = "openEnable";
+						- _id = GUID a5bade36-811a-4e36-bc50-30a0f034964d;
+					}
+					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
+					- m_name = { CGIText 
+						- m_str = "openEnable";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 1;
+					}
+					- m_drawBehavior = 4096;
+					- m_transform = 0.000485531 0 0 0.00043576 272 342.485 ;
+					- m_bIsPreferencesInitialized = 1;
+					- m_polygon = 4 0 -1114  0 113628  102980 113628  102980 -1114  ;
+					- m_nNameFormat = 0;
+					- m_nIsNameFormat = 0;
+					- Compartments = { IRPYRawContainer 
+						- size = 0;
+					}
+					- m_csModelObjPath = "Default.trainDoor[0].openEnable";
+					- m_csName = "openEnable";
+					- m_PartsArray = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IClass";
+							- _filename = "Default.sbs";
+							- _subsystem = "Default";
+							- _class = "";
+							- _name = "trainDoor";
+							- _id = GUID 6a31b546-f7bb-407b-a9d9-e9ab67ca82bc;
+						}
+					}
+				}
+				{ CGIActiveX 
+					- _id = GUID aff5cc57-6c76-4a66-a984-557a00594af6;
+					- m_type = 219;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "";
+					}
+					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
+					- m_name = { CGIText 
+						- m_str = "led_5";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 1;
+					}
+					- m_drawBehavior = 4096;
+					- m_transform = 0.000126238 0 0 0.000113298 291 252.126 ;
+					- m_bIsPreferencesInitialized = 1;
+					- m_polygon = 4 0 -1114  0 113628  102980 113628  102980 -1114  ;
+					- m_nNameFormat = 0;
+					- m_nIsNameFormat = 0;
+					- Compartments = { IRPYRawContainer 
+						- size = 0;
+					}
+					- m_csModelObjPath = "";
+					- m_csName = "led_5";
+					- m_PartsArray = { IRPYRawContainer 
+						- size = 0;
 					}
 				}
 				
