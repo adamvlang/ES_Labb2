@@ -1,0 +1,213 @@
+I-Logix-RPY-Archive version 8.10.0 C 6930133
+{ IComponent 
+	- _id = GUID e12da77e-b31c-42e8-b844-b3fc3b4032f0;
+	- _myState = 139264;
+	- _name = "DefaultComponent";
+	- _modifiedTimeWeak = 12.1.2015::7:53:12;
+	- m_buildType = Executable;
+	- m_libraries = "";
+	- m_additionalSources = "";
+	- m_standardHeaders = "";
+	- m_includePath = "";
+	- m_initializationCode = "";
+	- m_folder = { IFolder 
+		- _id = GUID 0d9642c6-531d-4f7e-8f8f-c77af9148a74;
+		- _myState = 73728;
+		- _name = "Files";
+		- _modifiedTimeWeak = 12.1.2015::7:12:0;
+		- m_path = "";
+		- Elements = { IRPYRawContainer 
+			- size = 0;
+		}
+		- Files = { IRPYRawContainer 
+			- size = 0;
+		}
+	}
+	- m_configActive = { ICodeGenConfigInfoHandle 
+		- _m2Class = "ICodeGenConfigInfo";
+		- _id = GUID 686eaa79-41ca-404a-8532-a7eae774f054;
+	}
+	- Configs = { IRPYRawContainer 
+		- size = 2;
+		- value = 
+		{ ICodeGenConfigInfo 
+			- _id = GUID be593a93-3748-44e3-96f7-f95be1cf69ed;
+			- _myState = 8192;
+			- _name = "trainDoor";
+			- _modifiedTimeWeak = 12.1.2015::7:53:4;
+			- HyperLinks = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IMHyperLink 
+					- _id = GUID e49ca07d-294d-4f16-b8f2-9afede711404;
+					- _modifiedTimeWeak = 1.2.1990::0:0:0;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Makefile";
+					- _linkType = "FREE";
+					- _linkTarget = "C:\\Users\\andfro\\Documents\\GitHub\\es_labb2\\TrainDoor\\DefaultComponent\\DefaultConfig\\DefaultComponent.mak";
+					- isConfigurationFileHyperLink = 1;
+				}
+				{ IMHyperLink 
+					- _id = GUID 457bdef9-ae0a-4510-b54a-49dc47057210;
+					- _modifiedTimeWeak = 1.2.1990::0:0:0;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Main File";
+					- _linkType = "FREE";
+					- _linkTarget = "C:\\Users\\andfro\\Documents\\GitHub\\es_labb2\\TrainDoor\\DefaultComponent\\DefaultConfig\\MainDefaultComponent";
+					- isConfigurationFileHyperLink = 1;
+				}
+			}
+			- _scopeType = Explicit;
+			- _libraries = "";
+			- _additionalSources = "";
+			- _standardHeaders = "";
+			- _includePath = "";
+			- _targetMain = "";
+			- _instrumentation = None;
+			- _timeModel = RealTime;
+			- m_generateActors = 1;
+			- _statechartImplementation = Flat;
+			- _initializationCode = "";
+			- _checksList = 0 ;
+			- ScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- InitialInstances = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IHandle 
+					- _m2Class = "IClass";
+					- _filename = "Default.sbs";
+					- _subsystem = "Default";
+					- _class = "";
+					- _name = "trainDoor";
+					- _id = GUID 6a31b546-f7bb-407b-a9d9-e9ab67ca82bc;
+				}
+			}
+			- _root = { IFolder 
+				- _id = GUID 119ecb18-4309-437d-85cc-5bbce4fc4a37;
+				- _myState = 8192;
+				- _name = "trainDoor";
+				- _modifiedTimeWeak = 12.1.2015::7:34:2;
+				- m_path = "";
+				- Elements = { IRPYRawContainer 
+					- size = 0;
+				}
+				- Files = { IRPYRawContainer 
+					- size = 0;
+				}
+			}
+			- weakCGTime = 12.1.2015::7:53:4;
+			- strongCGTime = 12.1.2015::7:53:4;
+			- AnimScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- m_allInAnimScope = 1;
+			- m_generateUsecases = 0;
+		}
+		{ ICodeGenConfigInfo 
+			- _id = GUID 686eaa79-41ca-404a-8532-a7eae774f054;
+			- _myState = 8192;
+			- _name = "Simulation";
+			- _modifiedTimeWeak = 12.1.2015::7:53:27;
+			- HyperLinks = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IMHyperLink 
+					- _id = GUID 2b8a4693-da58-4fc1-b27c-715730dbe37f;
+					- _modifiedTimeWeak = 1.2.1990::0:0:0;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Makefile";
+					- _linkType = "FREE";
+					- _linkTarget = "C:\\Users\\andfro\\Documents\\GitHub\\es_labb2\\TrainDoor\\DefaultComponent\\DefaultConfig\\DefaultComponent.mak";
+					- isConfigurationFileHyperLink = 1;
+				}
+				{ IMHyperLink 
+					- _id = GUID e80df0fe-be67-48e8-be9e-d49761aff2e3;
+					- _modifiedTimeWeak = 1.2.1990::0:0:0;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Main File";
+					- _linkType = "FREE";
+					- _linkTarget = "C:\\Users\\andfro\\Documents\\GitHub\\es_labb2\\TrainDoor\\DefaultComponent\\DefaultConfig\\MainDefaultComponent";
+					- isConfigurationFileHyperLink = 1;
+				}
+			}
+			- _scopeType = Explicit;
+			- _libraries = "";
+			- _additionalSources = "";
+			- _standardHeaders = "";
+			- _includePath = "";
+			- _targetMain = "";
+			- _instrumentation = Animation;
+			- _timeModel = RealTime;
+			- m_generateActors = 1;
+			- _statechartImplementation = Flat;
+			- _initializationCode = "";
+			- _checksList = 0 ;
+			- ScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- InitialInstances = { IRPYRawContainer 
+				- size = 1;
+				- value = 
+				{ IHandle 
+					- _m2Class = "IClass";
+					- _filename = "Default.sbs";
+					- _subsystem = "Default";
+					- _class = "";
+					- _name = "trainDoor";
+					- _id = GUID 6a31b546-f7bb-407b-a9d9-e9ab67ca82bc;
+				}
+			}
+			- _root = { IFolder 
+				- _id = GUID cb19695f-3847-4474-8703-e1f73c0669a4;
+				- _myState = 8192;
+				- _name = "Simulation";
+				- _modifiedTimeWeak = 12.1.2015::7:53:20;
+				- m_path = "";
+				- Elements = { IRPYRawContainer 
+					- size = 0;
+				}
+				- Files = { IRPYRawContainer 
+					- size = 0;
+				}
+			}
+			- weakCGTime = 12.1.2015::7:53:27;
+			- strongCGTime = 12.1.2015::7:53:27;
+			- AnimScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- m_allInAnimScope = 1;
+			- m_generateUsecases = 0;
+		}
+	}
+	- HandlesInMe = { IRPYRawContainer 
+		- size = 1;
+		- value = 
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "Default.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "Default";
+			- _id = GUID c9b2d404-8a79-4e56-9ce9-ce327e2b1a40;
+		}
+	}
+	- VariationPoints = { IRPYRawContainer 
+		- size = 0;
+	}
+	- SelectedVariants = { IRPYRawContainer 
+		- size = 0;
+	}
+	- weakCGTime = 12.1.2015::7:53:12;
+	- strongCGTime = 1.2.1990::0:0:0;
+}
+

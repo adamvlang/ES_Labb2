@@ -1,0 +1,150 @@
+I-Logix-RPY-Archive version 8.10.0 * 6930133
+{ CGEMdiWorkspace 
+	- stubList = { IRPYRawContainer 
+		- size = 0;
+	}
+	- isLoadOnDemand = 0;
+	- myViewsWithID = { IRPYRawContainer 
+		- size = 4;
+		- value = 
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -30;
+				- m_nLeft = 50;
+				- m_nTop = 50;
+				- m_nRight = 1190;
+				- m_nBottom = 638;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "Default.sbs";
+				- _subsystem = "Default";
+				- _class = "trainDoor";
+				- _name = "StatechartDiagram";
+				- _id = GUID ef498ea1-4f18-41bb-85be-0b9b22abf2a0;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 1103 529 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 2;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -30;
+				- m_nLeft = 175;
+				- m_nTop = 175;
+				- m_nRight = 1365;
+				- m_nBottom = 655;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "Default.sbs";
+				- _subsystem = "Default";
+				- _class = "trainDoor";
+				- _name = "StatechartDiagram";
+				- _id = GUID ef498ea1-4f18-41bb-85be-0b9b22abf2a0;
+			}
+			- _UpLeft = 64 0 ;
+			- _DownRight = 1217 421 ;
+			- _instanceName = "trainDoor[0]";
+			- m_nDiagramIndex = 1;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -30;
+				- m_nLeft = 25;
+				- m_nTop = 25;
+				- m_nRight = 1165;
+				- m_nBottom = 613;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Model1";
+				- _id = GUID 8424df20-ce0b-454d-a4ca-763dce4dae2f;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 1103 529 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 3;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 2;
+				- m_showCmd = 3;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -30;
+				- m_nLeft = 200;
+				- m_nTop = 200;
+				- m_nRight = 1390;
+				- m_nBottom = 680;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IPanelDiagram";
+				- _filename = "";
+				- _subsystem = "";
+				- _class = "";
+				- _name = "Panel";
+				- _id = GUID f254cbec-bd9d-495d-9f2e-8b1648c2fde0;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 1394 684 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 0;
+		}
+	}
+	- _fullName = "C:\\Users\\andfro\\Documents\\GitHub\\es_labb2\\TrainDoor\\TrainDoor";
+	- m_SearchScopeList = { IRPYRawContainer 
+		- size = 0;
+	}
+	- bUsingCustomBrowserView = 0;
+	- bUsingQueries = 0;
+	- bApplyOnDiagrams = 0;
+	- liQueryIDs = { IRPYRawContainer 
+		- size = 0;
+	}
+	- liElementTypes = { IRPYRawContainer 
+		- size = 0;
+	}
+
+	- m_favoritesTree = {
+		count=1;
+		{ - favoritesItem
+			generation = 0;
+			name = Favorites;
+			idOrFolder = folder;
+		}
+	}
+
+	- mapOslcRmActiveCollections = { IRPYRawContainer 
+		- size = 0;
+	}
+}
+

@@ -1,0 +1,39 @@
+I-Logix-RPY-Archive version 8.10.0 * 6930133
+
+- m_fileModifyTime = { IRPYRawContainer 
+	- size = 4;
+	- value = "DefaultComponent\\Simulation\\Default.c" 12.1.2015::8:3:22
+	"DefaultComponent\\Simulation\\Default.h" 12.1.2015::8:3:22
+	"DefaultComponent\\Simulation\\trainDoor.c" 12.1.2015::8:26:16
+	"DefaultComponent\\Simulation\\trainDoor.h" 12.1.2015::8:26:16
+	
+}
+- size = 3;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "Default.sbs";
+	- _subsystem = "Default";
+	- _class = "";
+	- _name = "trainDoor";
+	- _id = GUID 6a31b546-f7bb-407b-a9d9-e9ab67ca82bc;
+}
+- genTime = 12.1.2015::8:26:16;
+- hElement = { IHandle 
+	- _m2Class = "ICodeGenConfigInfo";
+	- _filename = "DefaultComponent.cmp";
+	- _subsystem = "";
+	- _class = "";
+	- _name = "DefaultComponent\\Simulation";
+	- _id = GUID 686eaa79-41ca-404a-8532-a7eae774f054;
+}
+- genTime = 12.1.2015::8:26:16;
+- hElement = { IHandle 
+	- _m2Class = "ISubsystem";
+	- _filename = "Default.sbs";
+	- _subsystem = "";
+	- _class = "";
+	- _name = "Default";
+	- _id = GUID c9b2d404-8a79-4e56-9ce9-ce327e2b1a40;
+}
+- genTime = 12.1.2015::8:21:12;
+
