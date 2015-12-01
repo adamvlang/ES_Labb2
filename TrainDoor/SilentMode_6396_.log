@@ -1,0 +1,12 @@
+2015-12-01 16:33:01.230+01:00 bank11 CRRHP0010I File fake 
+ Error (line 2) - Attempt to read a token past end of file
+
+
+2015-12-01 16:33:01.233+01:00 bank11 CRRHP0010I File fake 
+ Error (line 2) - Attempt to read a token past end of file
+
+
+2015-12-01 16:33:01.233+01:00 bank11 CRRHP0010I File fake 
+ Error (line 2) - Missing start object token ({)
+
+

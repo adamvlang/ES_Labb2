@@ -1,6 +1,6 @@
 /*********************************************************************
 	Rhapsody in C	: 8.1.1 
-	Login		: andfro
+	Login		: adamlang
 	Component	: DefaultComponent 
 	Configuration 	: Simulation
 	Model Element	: Simulation

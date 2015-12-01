@@ -30,16 +30,16 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 				- _name = "StatechartDiagram";
 				- _id = GUID ef498ea1-4f18-41bb-85be-0b9b22abf2a0;
 			}
-			- _UpLeft = 0 0 ;
-			- _DownRight = 1103 529 ;
+			- _UpLeft = 383 28 ;
+			- _DownRight = 1486 557 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 2;
 		}
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
-				- m_nFlags = 2;
-				- m_showCmd = 3;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
 				- m_ptMinPositionX = -1;
 				- m_ptMinPositionY = -1;
 				- m_ptMaxPositionX = -8;
@@ -58,8 +58,8 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 				- _name = "StatechartDiagram";
 				- _id = GUID ef498ea1-4f18-41bb-85be-0b9b22abf2a0;
 			}
-			- _UpLeft = 98 15 ;
-			- _DownRight = 1492 699 ;
+			- _UpLeft = 79 244 ;
+			- _DownRight = 1244 669 ;
 			- _instanceName = "trainDoor[0]";
 			- m_nDiagramIndex = 1;
 		}
@@ -94,8 +94,8 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 		{ CGEMdiDiagramParams 
 			- _placement = { CCommon_WINDOWPLACEMENT 
 				- m_nLength = 44;
-				- m_nFlags = 0;
-				- m_showCmd = 1;
+				- m_nFlags = 2;
+				- m_showCmd = 3;
 				- m_ptMinPositionX = -1;
 				- m_ptMinPositionY = -1;
 				- m_ptMaxPositionX = -8;
@@ -115,12 +115,12 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 				- _id = GUID f254cbec-bd9d-495d-9f2e-8b1648c2fde0;
 			}
 			- _UpLeft = 0 0 ;
-			- _DownRight = 1153 421 ;
+			- _DownRight = 1394 684 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 0;
 		}
 	}
-	- _fullName = "C:\\Users\\andfro\\Documents\\GitHub\\es_labb2\\TrainDoor\\TrainDoor";
+	- _fullName = "C:\\Users\\adamlang\\Documents\\GitHub\\ES_Labb2\\TrainDoor\\TrainDoor";
 	- m_SearchScopeList = { IRPYRawContainer 
 		- size = 0;
 	}

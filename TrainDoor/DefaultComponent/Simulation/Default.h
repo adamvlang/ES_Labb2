@@ -1,6 +1,6 @@
 /*********************************************************************
 	Rhapsody in C	: 8.1.1 
-	Login		: andfro
+	Login		: adamlang
 	Component	: DefaultComponent 
 	Configuration 	: Simulation
 	Model Element	: Default
@@ -21,6 +21,14 @@
 #define entered_Default_id 18602
 
 #define rollOut_Default_id 18603
+
+#define evEnable_Default_id 18604
+
+#define evStop_Default_id 18605
+
+#define svStop_Default_id 18606
+
+#define evEnabled_Default_id 18607
 /*#]*/
 
 /*## auto_generated */
@@ -85,6 +93,78 @@ void rollOut_Cleanup(rollOut* const me);
 rollOut * RiC_Create_rollOut(void);
 
 void RiC_Destroy_rollOut(rollOut* const me);
+/*#]*/
+
+typedef struct evEnable evEnable;
+/*## event evEnable() */
+struct evEnable {
+    RiCEvent ric_event;
+};
+
+/*## auto_generated */
+void evEnable_Init(evEnable* const me);
+
+/*## auto_generated */
+void evEnable_Cleanup(evEnable* const me);
+
+/*#[ ignore */
+evEnable * RiC_Create_evEnable(void);
+
+void RiC_Destroy_evEnable(evEnable* const me);
+/*#]*/
+
+typedef struct evStop evStop;
+/*## event evStop() */
+struct evStop {
+    RiCEvent ric_event;
+};
+
+/*## auto_generated */
+void evStop_Init(evStop* const me);
+
+/*## auto_generated */
+void evStop_Cleanup(evStop* const me);
+
+/*#[ ignore */
+evStop * RiC_Create_evStop(void);
+
+void RiC_Destroy_evStop(evStop* const me);
+/*#]*/
+
+typedef struct svStop svStop;
+/*## event svStop() */
+struct svStop {
+    RiCEvent ric_event;
+};
+
+/*## auto_generated */
+void svStop_Init(svStop* const me);
+
+/*## auto_generated */
+void svStop_Cleanup(svStop* const me);
+
+/*#[ ignore */
+svStop * RiC_Create_svStop(void);
+
+void RiC_Destroy_svStop(svStop* const me);
+/*#]*/
+
+typedef struct evEnabled evEnabled;
+/*## event evEnabled() */
+struct evEnabled {
+    RiCEvent ric_event;
+};
+
+/*## auto_generated */
+void evEnabled_Init(evEnabled* const me);
+
+/*## auto_generated */
+void evEnabled_Cleanup(evEnabled* const me);
+
+/*#[ ignore */
+evEnabled * RiC_Create_evEnabled(void);
+
+void RiC_Destroy_evEnabled(evEnabled* const me);
 /*#]*/
 
 #endif

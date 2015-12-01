@@ -1,6 +1,6 @@
 /*********************************************************************
 	Rhapsody in C	: 8.1.1 
-	Login		: andfro
+	Login		: adamlang
 	Component	: DefaultComponent 
 	Configuration 	: Simulation
 	Model Element	: trainDoor
@@ -22,13 +22,15 @@
 /*## auto_generated */
 #include <oxf\RiCEvent.h>
 /*#[ ignore */
-#define trainDoor_Timeout_closing_id 4
+#define trainDoor_Timeout_closing_id 5
 
-#define trainDoor_Timeout_open_id 3
+#define trainDoor_Timeout_open_id 4
 
-#define trainDoor_Timeout_opening_id 2
+#define trainDoor_Timeout_opening_id 3
 
-#define trainDoor_Timeout_notAtPlatform_id 1
+#define trainDoor_Timeout_butDisabled_id 2
+
+#define trainDoor_Timeout_warning_id 1
 /*#]*/
 
 /*## package Default */
@@ -39,9 +41,14 @@ struct trainDoor {
     RiCReactive ric_reactive;
     int closeTime;		/*## attribute closeTime */
     int openTime;		/*## attribute openTime */
+    int stopTime;		/*## attribute stopTime */
     /*#[ ignore */
     int rootState_subState;
     int rootState_active;
+    int state_14_subState;
+    int state_14_active;
+    int state_13_subState;
+    int state_13_active;
     int atPlatform_subState;
     /*#]*/
 };
@@ -72,9 +79,36 @@ RiCBoolean trainDoor_startBehavior(trainDoor* const me);
 /*## statechart_method */
 int trainDoor_rootState_IN(const trainDoor* const me);
 
-/* notAtPlatform: */
+/* Active: */
 /*## statechart_method */
-int trainDoor_notAtPlatform_IN(const trainDoor* const me);
+int trainDoor_Active_IN(const trainDoor* const me);
+
+/*## statechart_method */
+void trainDoor_Active_exit(trainDoor* const me);
+
+/* state_14: */
+/*## statechart_method */
+int trainDoor_state_14_IN(const trainDoor* const me);
+
+/* warning: */
+/*## statechart_method */
+int trainDoor_warning_IN(const trainDoor* const me);
+
+/* butEnabled: */
+/*## statechart_method */
+int trainDoor_butEnabled_IN(const trainDoor* const me);
+
+/* butDisabled: */
+/*## statechart_method */
+int trainDoor_butDisabled_IN(const trainDoor* const me);
+
+/* state_13: */
+/*## statechart_method */
+int trainDoor_state_13_IN(const trainDoor* const me);
+
+/* notAtplatform: */
+/*## statechart_method */
+int trainDoor_notAtplatform_IN(const trainDoor* const me);
 
 /* atPlatform: */
 /*## statechart_method */
@@ -105,12 +139,18 @@ int trainDoor_closed_IN(const trainDoor* const me);
 /*#[ ignore */
 enum trainDoor_Enum {
     trainDoor_RiCNonState = 0,
-    trainDoor_notAtPlatform = 1,
-    trainDoor_atPlatform = 2,
-    trainDoor_opening = 3,
-    trainDoor_open = 4,
-    trainDoor_closing = 5,
-    trainDoor_closed = 6
+    trainDoor_Active = 1,
+    trainDoor_state_14 = 2,
+    trainDoor_warning = 3,
+    trainDoor_butEnabled = 4,
+    trainDoor_butDisabled = 5,
+    trainDoor_state_13 = 6,
+    trainDoor_notAtplatform = 7,
+    trainDoor_atPlatform = 8,
+    trainDoor_opening = 9,
+    trainDoor_open = 10,
+    trainDoor_closing = 11,
+    trainDoor_closed = 12
 };
 /*#]*/
 

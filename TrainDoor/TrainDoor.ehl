@@ -1,4 +1,6 @@
 [Op Calls]
 [Events]
+trainDoor[0]->GEN(evEnable())`trainDoor
+trainDoor[0]->GEN(rollOut())`trainDoor
 trainDoor[0]->GEN(evBPress())`trainDoor
 [Breakpoints]

@@ -30,8 +30,8 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 				- _name = "StatechartDiagram";
 				- _id = GUID 9d0f922e-4984-4eeb-b8aa-3ac9f6f2f4ce;
 			}
-			- _UpLeft = 65 78 ;
-			- _DownRight = 1441 753 ;
+			- _UpLeft = 0 60 ;
+			- _DownRight = 1376 735 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 1;
 		}
@@ -64,7 +64,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 			- m_nDiagramIndex = 0;
 		}
 	}
-	- _fullName = "C:\\Users\\andfro\\Documents\\GitHub\\es_labb2\\Dishwasher";
+	- _fullName = "C:\\Users\\adamlang\\Documents\\GitHub\\ES_Labb2\\Dishwasher";
 	- m_SearchScopeList = { IRPYRawContainer 
 		- size = 0;
 	}
