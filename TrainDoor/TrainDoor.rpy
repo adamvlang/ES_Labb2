@@ -3,7 +3,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 	- _id = GUID 14eef766-33df-4568-9e9f-d2730e16d4d8;
 	- _myState = 8192;
 	- _name = "TrainDoor";
-	- _modifiedTimeWeak = 12.1.2015::16:45:27;
+	- _modifiedTimeWeak = 12.7.2015::13:7:33;
 	- _lastID = 1;
 	- _UserColors = { IRPYRawContainer 
 		- size = 16;
@@ -528,7 +528,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 			}
 			- _name = "Panel";
 			- _modifiedTimeWeak = 1.2.1990::0:0:0;
-			- _lastModifiedTime = "12.1.2015::16:54:45";
+			- _lastModifiedTime = "12.7.2015::13:8:27";
 			- _graphicChart = { CGIClassChart 
 				- _id = GUID b1736788-66fe-45da-9b5e-ec7a57b51b92;
 				- m_type = 0;
@@ -552,7 +552,7 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 				}
 				- m_drawBehavior = 0;
 				- m_bIsPreferencesInitialized = 0;
-				- elementList = 17;
+				- elementList = 18;
 				{ CGIBox 
 					- _id = GUID 53500504-853b-4b21-bac2-397852809fd1;
 					- m_type = 215;
@@ -1697,6 +1697,81 @@ I-Logix-RPY-Archive version 8.10.0 C 6930133
 					}
 					- m_csModelObjPath = "Default.trainDoor[0].statechart_3.warning";
 					- m_csName = "WARNING";
+					- m_PartsArray = { IRPYRawContainer 
+						- size = 1;
+						- value = 
+						{ IHandle 
+							- _m2Class = "IClass";
+							- _filename = "Default.sbs";
+							- _subsystem = "Default";
+							- _class = "";
+							- _name = "trainDoor";
+							- _id = GUID 6a31b546-f7bb-407b-a9d9-e9ab67ca82bc;
+						}
+					}
+				}
+				{ CGIActiveX 
+					- _id = GUID a6570ee2-2042-4f1d-ad0f-e1b0cffdd3eb;
+					- _properties = { IPropertyContainer 
+						- Subjects = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertySubject 
+								- _Name = "Format";
+								- Metaclasses = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IPropertyMetaclass 
+										- _Name = "Gauge";
+										- Properties = { IRPYRawContainer 
+											- size = 1;
+											- value = 
+											{ IProperty 
+												- _Name = "ActiveXProperties@Child.ActiveXControl";
+												- _Value = "BackColor;16777215;Caption;;CaptionColor;16777215;CaptionFont;Arial;;12;-1;-1;0;0;700;0;DivisionLineThickness;2;EnclosingCircleColor;12632256;EndAngle;-45;ExternalCircleThickness;3;ForeColor;0;GreenColor;65280;GreenStartValue;60;IndexColor;12582912;IndexLineThickness;0;InternalCircleThickness;2;MaximumValue;5;MinimumValue;0;NumberColor;4210752;NumberFont;Arial;;8,25;0;0;0;0;400;0;NumberOfDivisions;5;NumberOfSubdivisions;2;RedColor;255;RedStartValue;90;RelativeCaptionX;0,5;RelativeCaptionY;0,5;RelativeCenter
+X;0,5;RelativeCenterY;0,55;RelativeEnclosingCircleRadius;0,98;RelativeExternalRadius;1,1;RelativeIndexBackLength;0,3;RelativeIndexLength;1,2;RelativeInternalRadius;0,35;RelativeTextRadius;1,1;ScaleCircleColor;16777215;StartAngle;225;StepValue;1;SubdivisionLineThickness;1;TailAngle;165;Value;0;ValueFormatString;%.0f;YellowColor;65535;YellowStartValue;75;";
+												- _Type = String;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					- m_type = 217;
+					- m_pModelObject = { IHandle 
+						- _m2Class = "IAttribute";
+						- _filename = "Default.sbs";
+						- _subsystem = "Default";
+						- _class = "trainDoor";
+						- _name = "speed";
+						- _id = GUID 3e5ad608-bffb-4497-8de4-3a4abf3493e6;
+					}
+					- m_pParent = GUID 53500504-853b-4b21-bac2-397852809fd1;
+					- m_name = { CGIText 
+						- m_str = "SPEED";
+						- m_style = "Arial" 10 0 0 0 1 ;
+						- m_color = { IColor 
+							- m_fgColor = 0;
+							- m_bgColor = 0;
+							- m_bgFlag = 0;
+						}
+						- m_position = 1 0 0  ;
+						- m_nIdent = 0;
+						- m_bImplicitSetRectPoints = 0;
+						- m_nOrientationCtrlPt = 1;
+					}
+					- m_drawBehavior = 4096;
+					- m_transform = 0.0015537 0 0 0.00139443 1231 103.553 ;
+					- m_bIsPreferencesInitialized = 1;
+					- m_polygon = 4 0 -1114  0 113628  102980 113628  102980 -1114  ;
+					- m_nNameFormat = 0;
+					- m_nIsNameFormat = 0;
+					- Compartments = { IRPYRawContainer 
+						- size = 0;
+					}
+					- m_csModelObjPath = "Default.trainDoor[0].speed";
+					- m_csName = "SPEED";
 					- m_PartsArray = { IRPYRawContainer 
 						- size = 1;
 						- value = 

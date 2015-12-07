@@ -1,10 +1,10 @@
 /*********************************************************************
 	Rhapsody in C	: 8.1.1 
-	Login		: adamlang
+	Login		: andfro
 	Component	: DefaultComponent 
 	Configuration 	: Simulation
 	Model Element	: trainDoor
-//!	Generated Date	: Tue, 1, Dec 2015  
+//!	Generated Date	: Mon, 7, Dec 2015  
 	File Path	: DefaultComponent\Simulation\trainDoor.h
 *********************************************************************/
 
@@ -22,13 +22,15 @@
 /*## auto_generated */
 #include <oxf\RiCEvent.h>
 /*#[ ignore */
-#define trainDoor_Timeout_closing_id 5
+#define trainDoor_Timeout_closing_id 6
 
-#define trainDoor_Timeout_open_id 4
+#define trainDoor_Timeout_open_id 5
 
-#define trainDoor_Timeout_opening_id 3
+#define trainDoor_Timeout_opening_id 4
 
-#define trainDoor_Timeout_butDisabled_id 2
+#define trainDoor_Timeout_stopped_id 3
+
+#define trainDoor_Timeout_stopping_id 2
 
 #define trainDoor_Timeout_warning_id 1
 /*#]*/
@@ -41,6 +43,7 @@ struct trainDoor {
     RiCReactive ric_reactive;
     int closeTime;		/*## attribute closeTime */
     int openTime;		/*## attribute openTime */
+    int speed;		/*## attribute speed */
     int stopTime;		/*## attribute stopTime */
     /*#[ ignore */
     int rootState_subState;
@@ -49,6 +52,7 @@ struct trainDoor {
     int state_14_active;
     int state_13_subState;
     int state_13_active;
+    int notAtplatform_subState;
     int atPlatform_subState;
     /*#]*/
 };
@@ -63,6 +67,9 @@ void trainDoor_Init(trainDoor* const me, RiCTask * p_task);
 
 /*## auto_generated */
 void trainDoor_Cleanup(trainDoor* const me);
+
+/*## auto_generated */
+void trainDoor_setSpeed(trainDoor* const me, int p_speed);
 
 /*## auto_generated */
 trainDoor * trainDoor_Create(RiCTask * p_task);
@@ -110,6 +117,18 @@ int trainDoor_state_13_IN(const trainDoor* const me);
 /*## statechart_method */
 int trainDoor_notAtplatform_IN(const trainDoor* const me);
 
+/* stopping: */
+/*## statechart_method */
+int trainDoor_stopping_IN(const trainDoor* const me);
+
+/* stopped: */
+/*## statechart_method */
+int trainDoor_stopped_IN(const trainDoor* const me);
+
+/* running: */
+/*## statechart_method */
+int trainDoor_running_IN(const trainDoor* const me);
+
 /* atPlatform: */
 /*## statechart_method */
 int trainDoor_atPlatform_IN(const trainDoor* const me);
@@ -124,9 +143,15 @@ RiCTakeEventStatus trainDoor_atPlatform_takeEvent(trainDoor* const me, short id)
 /*## statechart_method */
 int trainDoor_opening_IN(const trainDoor* const me);
 
+/*## statechart_method */
+RiCTakeEventStatus trainDoor_opening_takeEvent(trainDoor* const me, short id);
+
 /* open: */
 /*## statechart_method */
 int trainDoor_open_IN(const trainDoor* const me);
+
+/*## statechart_method */
+RiCTakeEventStatus trainDoor_open_takeEvent(trainDoor* const me, short id);
 
 /* closing: */
 /*## statechart_method */
@@ -135,6 +160,9 @@ int trainDoor_closing_IN(const trainDoor* const me);
 /* closed: */
 /*## statechart_method */
 int trainDoor_closed_IN(const trainDoor* const me);
+
+/*## statechart_method */
+RiCTakeEventStatus trainDoor_closed_takeEvent(trainDoor* const me, short id);
 
 /*#[ ignore */
 enum trainDoor_Enum {
@@ -146,11 +174,14 @@ enum trainDoor_Enum {
     trainDoor_butDisabled = 5,
     trainDoor_state_13 = 6,
     trainDoor_notAtplatform = 7,
-    trainDoor_atPlatform = 8,
-    trainDoor_opening = 9,
-    trainDoor_open = 10,
-    trainDoor_closing = 11,
-    trainDoor_closed = 12
+    trainDoor_stopping = 8,
+    trainDoor_stopped = 9,
+    trainDoor_running = 10,
+    trainDoor_atPlatform = 11,
+    trainDoor_opening = 12,
+    trainDoor_open = 13,
+    trainDoor_closing = 14,
+    trainDoor_closed = 15
 };
 /*#]*/
 

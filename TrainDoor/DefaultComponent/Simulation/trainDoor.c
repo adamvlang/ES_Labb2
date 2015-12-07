@@ -1,10 +1,10 @@
 /*********************************************************************
 	Rhapsody in C	: 8.1.1 
-	Login		: adamlang
+	Login		: andfro
 	Component	: DefaultComponent 
 	Configuration 	: Simulation
 	Model Element	: trainDoor
-//!	Generated Date	: Tue, 1, Dec 2015  
+//!	Generated Date	: Mon, 7, Dec 2015  
 	File Path	: DefaultComponent\Simulation\trainDoor.c
 *********************************************************************/
 
@@ -78,6 +78,20 @@ static RiCTakeEventStatus state_13_dispatchEvent(trainDoor* const me, short id);
 #ifdef _OMINSTRUMENT
 /*## statechart_method */
 static void notAtplatform_serializeStates(const trainDoor* const me, ARCSState * arcsState);
+#endif /* _OMINSTRUMENT */
+
+/*## statechart_method */
+static void notAtplatform_entDef(trainDoor* const me);
+
+#ifdef _OMINSTRUMENT
+/*## statechart_method */
+static void stopping_serializeStates(const trainDoor* const me, ARCSState * arcsState);
+
+/*## statechart_method */
+static void stopped_serializeStates(const trainDoor* const me, ARCSState * arcsState);
+
+/*## statechart_method */
+static void running_serializeStates(const trainDoor* const me, ARCSState * arcsState);
 
 /*## statechart_method */
 static void atPlatform_serializeStates(const trainDoor* const me, ARCSState * arcsState);
@@ -129,6 +143,7 @@ void trainDoor_Init(trainDoor* const me, RiCTask * p_task) {
     };
     me->closeTime = 5000;
     me->openTime = 5000;
+    me->speed = 0;
     me->stopTime = 0;
     RiCReactive_init(&(me->ric_reactive), (void*)me, p_task, &trainDoor_reactiveVtbl);
     NOTIFY_REACTIVE_CONSTRUCTOR(me, &me, NULL, trainDoor, trainDoor_Init, trainDoor_Init(), 0, Default_trainDoor_Init_SERIALIZE);
@@ -142,6 +157,11 @@ void trainDoor_Init(trainDoor* const me, RiCTask * p_task) {
 void trainDoor_Cleanup(trainDoor* const me) {
     NOTIFY_DESTRUCTOR(me, &me, trainDoor, ~trainDoor);
     RiCReactive_cleanup(&(me->ric_reactive));
+}
+
+void trainDoor_setSpeed(trainDoor* const me, int p_speed) {
+    me->speed = p_speed;
+    NOTIFY_SET_OPERATION(me, trainDoor);
 }
 
 trainDoor * trainDoor_Create(RiCTask * p_task) {
@@ -175,6 +195,7 @@ static void initStatechart(trainDoor* const me) {
     me->state_14_active = trainDoor_RiCNonState;
     me->state_13_subState = trainDoor_RiCNonState;
     me->state_13_active = trainDoor_RiCNonState;
+    me->notAtplatform_subState = trainDoor_RiCNonState;
     me->atPlatform_subState = trainDoor_RiCNonState;
 }
 
@@ -197,6 +218,32 @@ void trainDoor_Active_exit(trainDoor* const me) {
         /* State notAtplatform */
         case trainDoor_notAtplatform:
         {
+            switch (me->notAtplatform_subState) {
+                /* State running */
+                case trainDoor_running:
+                {
+                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.running");
+                }
+                break;
+                /* State stopping */
+                case trainDoor_stopping:
+                {
+                    RiCReactive_popNullConfig(&(me->ric_reactive));
+                    RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_stopping_id, &(me->ric_reactive));
+                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.stopping");
+                }
+                break;
+                /* State stopped */
+                case trainDoor_stopped:
+                {
+                    RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_stopped_id, &(me->ric_reactive));
+                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.stopped");
+                }
+                break;
+                default:
+                    break;
+            }
+            me->notAtplatform_subState = trainDoor_RiCNonState;
             NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform");
         }
         break;
@@ -209,7 +256,6 @@ void trainDoor_Active_exit(trainDoor* const me) {
         /* State butDisabled */
         case trainDoor_butDisabled:
         {
-            RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_butDisabled_id, &(me->ric_reactive));
             NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_14.butDisabled");
         }
         break;
@@ -257,6 +303,18 @@ int trainDoor_state_13_IN(const trainDoor* const me) {
 
 int trainDoor_notAtplatform_IN(const trainDoor* const me) {
     return me->state_13_subState == trainDoor_notAtplatform;
+}
+
+int trainDoor_stopping_IN(const trainDoor* const me) {
+    return me->notAtplatform_subState == trainDoor_stopping;
+}
+
+int trainDoor_stopped_IN(const trainDoor* const me) {
+    return me->notAtplatform_subState == trainDoor_stopped;
+}
+
+int trainDoor_running_IN(const trainDoor* const me) {
+    return me->notAtplatform_subState == trainDoor_running;
 }
 
 int trainDoor_atPlatform_IN(const trainDoor* const me) {
@@ -314,9 +372,7 @@ RiCTakeEventStatus trainDoor_atPlatform_takeEvent(trainDoor* const me, short id)
                         me->stopTime = 3;
                         /*#]*/
                     }
-                    NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.notAtplatform");
-                    me->state_13_subState = trainDoor_notAtplatform;
-                    me->state_13_active = trainDoor_notAtplatform;
+                    notAtplatform_entDef(me);
                     NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "6");
                     res = eventConsumed;
                 }
@@ -329,8 +385,58 @@ int trainDoor_opening_IN(const trainDoor* const me) {
     return me->atPlatform_subState == trainDoor_opening;
 }
 
+RiCTakeEventStatus trainDoor_opening_takeEvent(trainDoor* const me, short id) {
+    RiCTakeEventStatus res = eventNotConsumed;
+    /*## transition 3 */
+    if(id == Timeout_id)
+        {
+            if(RiCTimeout_getTimeoutId((RiCTimeout*) me->ric_reactive.current_event) == trainDoor_Timeout_opening_id)
+                {
+                    NOTIFY_TRANSITION_STARTED(me, trainDoor, "3");
+                    RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_opening_id, &(me->ric_reactive));
+                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.atPlatform.opening");
+                    NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.atPlatform.open");
+                    me->atPlatform_subState = trainDoor_open;
+                    me->state_13_active = trainDoor_open;
+                    RiCTask_schedTm(me->ric_reactive.myTask, 10000, trainDoor_Timeout_open_id, &(me->ric_reactive), "ROOT.Active.state_13.atPlatform.open");
+                    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "3");
+                    res = eventConsumed;
+                }
+        }
+    if(res == eventNotConsumed)
+        {
+            res = trainDoor_atPlatform_takeEvent(me, id);
+        }
+    return res;
+}
+
 int trainDoor_open_IN(const trainDoor* const me) {
     return me->atPlatform_subState == trainDoor_open;
+}
+
+RiCTakeEventStatus trainDoor_open_takeEvent(trainDoor* const me, short id) {
+    RiCTakeEventStatus res = eventNotConsumed;
+    /*## transition 0 */
+    if(id == Timeout_id)
+        {
+            if(RiCTimeout_getTimeoutId((RiCTimeout*) me->ric_reactive.current_event) == trainDoor_Timeout_open_id)
+                {
+                    NOTIFY_TRANSITION_STARTED(me, trainDoor, "0");
+                    RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_open_id, &(me->ric_reactive));
+                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.atPlatform.open");
+                    NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.atPlatform.closing");
+                    me->atPlatform_subState = trainDoor_closing;
+                    me->state_13_active = trainDoor_closing;
+                    RiCTask_schedTm(me->ric_reactive.myTask, me->closeTime, trainDoor_Timeout_closing_id, &(me->ric_reactive), "ROOT.Active.state_13.atPlatform.closing");
+                    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "0");
+                    res = eventConsumed;
+                }
+        }
+    if(res == eventNotConsumed)
+        {
+            res = trainDoor_atPlatform_takeEvent(me, id);
+        }
+    return res;
 }
 
 int trainDoor_closing_IN(const trainDoor* const me) {
@@ -341,6 +447,30 @@ int trainDoor_closed_IN(const trainDoor* const me) {
     return me->atPlatform_subState == trainDoor_closed;
 }
 
+RiCTakeEventStatus trainDoor_closed_takeEvent(trainDoor* const me, short id) {
+    RiCTakeEventStatus res = eventNotConsumed;
+    if(id == evBPress_Default_id)
+        {
+            /*## transition 2 */
+            if(IS_IN(me, trainDoor_butEnabled))
+                {
+                    NOTIFY_TRANSITION_STARTED(me, trainDoor, "2");
+                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.atPlatform.closed");
+                    NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.atPlatform.opening");
+                    me->atPlatform_subState = trainDoor_opening;
+                    me->state_13_active = trainDoor_opening;
+                    RiCTask_schedTm(me->ric_reactive.myTask, me->openTime, trainDoor_Timeout_opening_id, &(me->ric_reactive), "ROOT.Active.state_13.atPlatform.opening");
+                    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "2");
+                    res = eventConsumed;
+                }
+        }
+    if(res == eventNotConsumed)
+        {
+            res = trainDoor_atPlatform_takeEvent(me, id);
+        }
+    return res;
+}
+
 #ifdef _OMINSTRUMENT
 static void serializeAttributes(const void * const void_me, ARCSAttributes * arcsAttributes) {
     
@@ -348,6 +478,7 @@ static void serializeAttributes(const void * const void_me, ARCSAttributes * arc
     ARCSA_addAttribute_c(arcsAttributes, "openTime", ARC_int2String(me->openTime));
     ARCSA_addAttribute_c(arcsAttributes, "closeTime", ARC_int2String(me->closeTime));
     ARCSA_addAttribute_c(arcsAttributes, "stopTime", ARC_int2String(me->stopTime));
+    ARCSA_addAttribute_c(arcsAttributes, "speed", ARC_int2String(me->speed));
 }
 
 static void rootState_serializeStates(const void * const void_me, ARCSState * arcsState) {
@@ -366,9 +497,9 @@ static void rootState_entDef(void * const void_me) {
     trainDoor * const me = (trainDoor *)void_me;
     {
         NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT");
-        NOTIFY_TRANSITION_STARTED(me, trainDoor, "15");
+        NOTIFY_TRANSITION_STARTED(me, trainDoor, "12");
         Active_entDef(me);
-        NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "15");
+        NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "12");
     }
 }
 
@@ -451,12 +582,11 @@ static void state_14_serializeStates(const trainDoor* const me, ARCSState * arcs
 
 static void state_14_entDef(trainDoor* const me) {
     NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_14");
-    NOTIFY_TRANSITION_STARTED(me, trainDoor, "11");
+    NOTIFY_TRANSITION_STARTED(me, trainDoor, "8");
     NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_14.butDisabled");
     me->state_14_subState = trainDoor_butDisabled;
     me->state_14_active = trainDoor_butDisabled;
-    RiCTask_schedTm(me->ric_reactive.myTask, 1000, trainDoor_Timeout_butDisabled_id, &(me->ric_reactive), "ROOT.Active.state_14.butDisabled");
-    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "11");
+    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "8");
 }
 
 static RiCTakeEventStatus state_14_dispatchEvent(trainDoor* const me, short id) {
@@ -465,83 +595,46 @@ static RiCTakeEventStatus state_14_dispatchEvent(trainDoor* const me, short id) 
         /* State butDisabled */
         case trainDoor_butDisabled:
         {
-            switch (id) {
-                case evEnable_Default_id:
+            if(id == evEnable_Default_id)
                 {
                     /*## transition 10 */
-                    if(IS_IN(me, trainDoor_atPlatform),me->stopTime <= 0)
+                    if(IS_IN(me, trainDoor_notAtplatform))
                         {
                             NOTIFY_TRANSITION_STARTED(me, trainDoor, "10");
-                            RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_butDisabled_id, &(me->ric_reactive));
                             NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_14.butDisabled");
-                            NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_14.butEnabled");
-                            me->state_14_subState = trainDoor_butEnabled;
-                            me->state_14_active = trainDoor_butEnabled;
+                            NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_14.warning");
+                            me->state_14_subState = trainDoor_warning;
+                            me->state_14_active = trainDoor_warning;
+                            RiCTask_schedTm(me->ric_reactive.myTask, 1000, trainDoor_Timeout_warning_id, &(me->ric_reactive), "ROOT.Active.state_14.warning");
                             NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "10");
                             res = eventConsumed;
                         }
                     else
                         {
-                            /*## transition 13 */
-                            if(IS_IN(me, trainDoor_notAtplatform))
-                                {
-                                    NOTIFY_TRANSITION_STARTED(me, trainDoor, "13");
-                                    RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_butDisabled_id, &(me->ric_reactive));
-                                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_14.butDisabled");
-                                    NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_14.warning");
-                                    me->state_14_subState = trainDoor_warning;
-                                    me->state_14_active = trainDoor_warning;
-                                    RiCTask_schedTm(me->ric_reactive.myTask, 1000, trainDoor_Timeout_warning_id, &(me->ric_reactive), "ROOT.Active.state_14.warning");
-                                    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "13");
-                                    res = eventConsumed;
-                                }
+                            NOTIFY_TRANSITION_STARTED(me, trainDoor, "19");
+                            NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_14.butDisabled");
+                            NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_14.butEnabled");
+                            me->state_14_subState = trainDoor_butEnabled;
+                            me->state_14_active = trainDoor_butEnabled;
+                            NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "19");
+                            res = eventConsumed;
                         }
                 }
-                break;
-                case Timeout_id:
-                {
-                    if(RiCTimeout_getTimeoutId((RiCTimeout*) me->ric_reactive.current_event) == trainDoor_Timeout_butDisabled_id)
-                        {
-                            /*## transition 8 */
-                            if(me->stopTime >= 0)
-                                {
-                                    NOTIFY_TRANSITION_STARTED(me, trainDoor, "8");
-                                    RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_butDisabled_id, &(me->ric_reactive));
-                                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_14.butDisabled");
-                                    {
-                                        /*#[ transition 8 */
-                                        --me->stopTime;
-                                        /*#]*/
-                                    }
-                                    NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_14.butDisabled");
-                                    me->state_14_subState = trainDoor_butDisabled;
-                                    me->state_14_active = trainDoor_butDisabled;
-                                    RiCTask_schedTm(me->ric_reactive.myTask, 1000, trainDoor_Timeout_butDisabled_id, &(me->ric_reactive), "ROOT.Active.state_14.butDisabled");
-                                    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "8");
-                                    res = eventConsumed;
-                                }
-                        }
-                }
-                break;
-                default:
-                    break;
-            }
             
         }
         break;
         /* State butEnabled */
         case trainDoor_butEnabled:
         {
-            /*## transition 16 */
+            /*## transition 13 */
             if(id == evEnable_Default_id)
                 {
-                    NOTIFY_TRANSITION_STARTED(me, trainDoor, "16");
+                    NOTIFY_TRANSITION_STARTED(me, trainDoor, "13");
                     NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_14.butEnabled");
                     NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_14.butDisabled");
                     me->state_14_subState = trainDoor_butDisabled;
                     me->state_14_active = trainDoor_butDisabled;
-                    RiCTask_schedTm(me->ric_reactive.myTask, 1000, trainDoor_Timeout_butDisabled_id, &(me->ric_reactive), "ROOT.Active.state_14.butDisabled");
-                    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "16");
+                    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "13");
                     res = eventConsumed;
                 }
             
@@ -550,19 +643,18 @@ static RiCTakeEventStatus state_14_dispatchEvent(trainDoor* const me, short id) 
         /* State warning */
         case trainDoor_warning:
         {
-            /*## transition 14 */
+            /*## transition 11 */
             if(id == Timeout_id)
                 {
                     if(RiCTimeout_getTimeoutId((RiCTimeout*) me->ric_reactive.current_event) == trainDoor_Timeout_warning_id)
                         {
-                            NOTIFY_TRANSITION_STARTED(me, trainDoor, "14");
+                            NOTIFY_TRANSITION_STARTED(me, trainDoor, "11");
                             RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_warning_id, &(me->ric_reactive));
                             NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_14.warning");
                             NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_14.butDisabled");
                             me->state_14_subState = trainDoor_butDisabled;
                             me->state_14_active = trainDoor_butDisabled;
-                            RiCTask_schedTm(me->ric_reactive.myTask, 1000, trainDoor_Timeout_butDisabled_id, &(me->ric_reactive), "ROOT.Active.state_14.butDisabled");
-                            NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "14");
+                            NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "11");
                             res = eventConsumed;
                         }
                 }
@@ -609,9 +701,9 @@ static void state_13_serializeStates(const trainDoor* const me, ARCSState * arcs
 
 static void state_13_entDef(trainDoor* const me) {
     NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13");
-    NOTIFY_TRANSITION_STARTED(me, trainDoor, "12");
+    NOTIFY_TRANSITION_STARTED(me, trainDoor, "9");
     atPlatform_entDef(me);
-    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "12");
+    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "9");
 }
 
 static RiCTakeEventStatus state_13_dispatchEvent(trainDoor* const me, short id) {
@@ -620,26 +712,7 @@ static RiCTakeEventStatus state_13_dispatchEvent(trainDoor* const me, short id) 
         /* State open */
         case trainDoor_open:
         {
-            /*## transition 0 */
-            if(id == Timeout_id)
-                {
-                    if(RiCTimeout_getTimeoutId((RiCTimeout*) me->ric_reactive.current_event) == trainDoor_Timeout_open_id)
-                        {
-                            NOTIFY_TRANSITION_STARTED(me, trainDoor, "0");
-                            RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_open_id, &(me->ric_reactive));
-                            NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.atPlatform.open");
-                            NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.atPlatform.closing");
-                            me->atPlatform_subState = trainDoor_closing;
-                            me->state_13_active = trainDoor_closing;
-                            RiCTask_schedTm(me->ric_reactive.myTask, me->closeTime, trainDoor_Timeout_closing_id, &(me->ric_reactive), "ROOT.Active.state_13.atPlatform.closing");
-                            NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "0");
-                            res = eventConsumed;
-                        }
-                }
-            if(res == eventNotConsumed)
-                {
-                    res = trainDoor_atPlatform_takeEvent(me, id);
-                }
+            res = trainDoor_open_takeEvent(me, id);
         }
         break;
         /* State closing */
@@ -702,63 +775,125 @@ static RiCTakeEventStatus state_13_dispatchEvent(trainDoor* const me, short id) 
         /* State closed */
         case trainDoor_closed:
         {
-            if(id == evBPress_Default_id)
-                {
-                    /*## transition 2 */
-                    if(IS_IN(me, trainDoor_butEnabled))
-                        {
-                            NOTIFY_TRANSITION_STARTED(me, trainDoor, "2");
-                            NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.atPlatform.closed");
-                            NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.atPlatform.opening");
-                            me->atPlatform_subState = trainDoor_opening;
-                            me->state_13_active = trainDoor_opening;
-                            RiCTask_schedTm(me->ric_reactive.myTask, me->openTime, trainDoor_Timeout_opening_id, &(me->ric_reactive), "ROOT.Active.state_13.atPlatform.opening");
-                            NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "2");
-                            res = eventConsumed;
-                        }
-                }
-            if(res == eventNotConsumed)
-                {
-                    res = trainDoor_atPlatform_takeEvent(me, id);
-                }
+            res = trainDoor_closed_takeEvent(me, id);
         }
         break;
         /* State opening */
         case trainDoor_opening:
         {
-            /*## transition 3 */
-            if(id == Timeout_id)
+            res = trainDoor_opening_takeEvent(me, id);
+        }
+        break;
+        /* State running */
+        case trainDoor_running:
+        {
+            /*## transition 14 */
+            if(id == evStop_Default_id)
                 {
-                    if(RiCTimeout_getTimeoutId((RiCTimeout*) me->ric_reactive.current_event) == trainDoor_Timeout_opening_id)
+                    NOTIFY_TRANSITION_STARTED(me, trainDoor, "14");
+                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.running");
+                    NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.stopping");
+                    RiCReactive_pushNullConfig(&(me->ric_reactive));
+                    me->notAtplatform_subState = trainDoor_stopping;
+                    me->state_13_active = trainDoor_stopping;
+                    RiCTask_schedTm(me->ric_reactive.myTask, 500, trainDoor_Timeout_stopping_id, &(me->ric_reactive), "ROOT.Active.state_13.notAtplatform.stopping");
+                    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "14");
+                    res = eventConsumed;
+                }
+            
+        }
+        break;
+        /* State stopping */
+        case trainDoor_stopping:
+        {
+            switch (id) {
+                case Timeout_id:
+                {
+                    if(RiCTimeout_getTimeoutId((RiCTimeout*) me->ric_reactive.current_event) == trainDoor_Timeout_stopping_id)
                         {
-                            NOTIFY_TRANSITION_STARTED(me, trainDoor, "3");
-                            RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_opening_id, &(me->ric_reactive));
-                            NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.atPlatform.opening");
-                            NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.atPlatform.open");
-                            me->atPlatform_subState = trainDoor_open;
-                            me->state_13_active = trainDoor_open;
-                            RiCTask_schedTm(me->ric_reactive.myTask, 10000, trainDoor_Timeout_open_id, &(me->ric_reactive), "ROOT.Active.state_13.atPlatform.open");
-                            NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "3");
+                            NOTIFY_TRANSITION_STARTED(me, trainDoor, "17");
+                            RiCReactive_popNullConfig(&(me->ric_reactive));
+                            RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_stopping_id, &(me->ric_reactive));
+                            NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.stopping");
+                            {
+                                /*#[ transition 17 */
+                                --(me->speed);
+                                /*#]*/
+                            }
+                            NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.stopping");
+                            RiCReactive_pushNullConfig(&(me->ric_reactive));
+                            me->notAtplatform_subState = trainDoor_stopping;
+                            me->state_13_active = trainDoor_stopping;
+                            RiCTask_schedTm(me->ric_reactive.myTask, 500, trainDoor_Timeout_stopping_id, &(me->ric_reactive), "ROOT.Active.state_13.notAtplatform.stopping");
+                            NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "17");
                             res = eventConsumed;
                         }
                 }
-            if(res == eventNotConsumed)
+                break;
+                case Null_id:
                 {
-                    res = trainDoor_atPlatform_takeEvent(me, id);
+                    /*## transition 15 */
+                    if(    me->speed == 0)
+                        {
+                            NOTIFY_NULL_TRANSITION_STARTED(me, trainDoor, "15");
+                            RiCReactive_popNullConfig(&(me->ric_reactive));
+                            RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_stopping_id, &(me->ric_reactive));
+                            NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.stopping");
+                            NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.stopped");
+                            me->notAtplatform_subState = trainDoor_stopped;
+                            me->state_13_active = trainDoor_stopped;
+                            RiCTask_schedTm(me->ric_reactive.myTask, 3000, trainDoor_Timeout_stopped_id, &(me->ric_reactive), "ROOT.Active.state_13.notAtplatform.stopped");
+                            NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "15");
+                            res = eventConsumed;
+                        }
                 }
+                break;
+                default:
+                    break;
+            }
+            
         }
         break;
-        /* State notAtplatform */
-        case trainDoor_notAtplatform:
+        /* State stopped */
+        case trainDoor_stopped:
         {
-            /*## transition 7 */
-            if(id == evStop_Default_id)
+            /*## transition 16 */
+            if(id == Timeout_id)
                 {
-                    NOTIFY_TRANSITION_STARTED(me, trainDoor, "7");
-                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform");
-                    atPlatform_entDef(me);
-                    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "7");
-                    res = eventConsumed;
+                    if(RiCTimeout_getTimeoutId((RiCTimeout*) me->ric_reactive.current_event) == trainDoor_Timeout_stopped_id)
+                        {
+                            NOTIFY_TRANSITION_STARTED(me, trainDoor, "16");
+                            switch (me->notAtplatform_subState) {
+                                /* State running */
+                                case trainDoor_running:
+                                {
+                                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.running");
+                                }
+                                break;
+                                /* State stopping */
+                                case trainDoor_stopping:
+                                {
+                                    RiCReactive_popNullConfig(&(me->ric_reactive));
+                                    RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_stopping_id, &(me->ric_reactive));
+                                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.stopping");
+                                }
+                                break;
+                                /* State stopped */
+                                case trainDoor_stopped:
+                                {
+                                    RiCTask_unschedTm(me->ric_reactive.myTask, trainDoor_Timeout_stopped_id, &(me->ric_reactive));
+                                    NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.stopped");
+                                }
+                                break;
+                                default:
+                                    break;
+                            }
+                            me->notAtplatform_subState = trainDoor_RiCNonState;
+                            NOTIFY_STATE_EXITED(me, trainDoor, "ROOT.Active.state_13.notAtplatform");
+                            atPlatform_entDef(me);
+                            NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "16");
+                            res = eventConsumed;
+                        }
                 }
             
         }
@@ -772,6 +907,54 @@ static RiCTakeEventStatus state_13_dispatchEvent(trainDoor* const me, short id) 
 #ifdef _OMINSTRUMENT
 static void notAtplatform_serializeStates(const trainDoor* const me, ARCSState * arcsState) {
     ARCSS_addState_OMH(arcsState, "ROOT.Active.state_13.notAtplatform");
+    switch (me->notAtplatform_subState) {
+        case trainDoor_running:
+        {
+            running_serializeStates(me, arcsState);
+        }
+        break;
+        case trainDoor_stopping:
+        {
+            stopping_serializeStates(me, arcsState);
+        }
+        break;
+        case trainDoor_stopped:
+        {
+            stopped_serializeStates(me, arcsState);
+        }
+        break;
+        default:
+            break;
+    }
+}
+#endif /* _OMINSTRUMENT */
+
+static void notAtplatform_entDef(trainDoor* const me) {
+    NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.notAtplatform");
+    me->state_13_subState = trainDoor_notAtplatform;
+    NOTIFY_TRANSITION_STARTED(me, trainDoor, "18");
+    NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.notAtplatform.running");
+    me->notAtplatform_subState = trainDoor_running;
+    me->state_13_active = trainDoor_running;
+    {
+        /*#[ state Active.state_13.notAtplatform.running.(Entry) */
+        me->speed = 5;
+        /*#]*/
+    }
+    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "18");
+}
+
+#ifdef _OMINSTRUMENT
+static void stopping_serializeStates(const trainDoor* const me, ARCSState * arcsState) {
+    ARCSS_addState_OMH(arcsState, "ROOT.Active.state_13.notAtplatform.stopping");
+}
+
+static void stopped_serializeStates(const trainDoor* const me, ARCSState * arcsState) {
+    ARCSS_addState_OMH(arcsState, "ROOT.Active.state_13.notAtplatform.stopped");
+}
+
+static void running_serializeStates(const trainDoor* const me, ARCSState * arcsState) {
+    ARCSS_addState_OMH(arcsState, "ROOT.Active.state_13.notAtplatform.running");
 }
 
 static void atPlatform_serializeStates(const trainDoor* const me, ARCSState * arcsState) {
@@ -806,11 +989,11 @@ static void atPlatform_serializeStates(const trainDoor* const me, ARCSState * ar
 static void atPlatform_entDef(trainDoor* const me) {
     NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.atPlatform");
     me->state_13_subState = trainDoor_atPlatform;
-    NOTIFY_TRANSITION_STARTED(me, trainDoor, "9");
+    NOTIFY_TRANSITION_STARTED(me, trainDoor, "7");
     NOTIFY_STATE_ENTERED(me, trainDoor, "ROOT.Active.state_13.atPlatform.closed");
     me->atPlatform_subState = trainDoor_closed;
     me->state_13_active = trainDoor_closed;
-    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "9");
+    NOTIFY_TRANSITION_TERMINATED(me, trainDoor, "7");
 }
 
 #ifdef _OMINSTRUMENT
